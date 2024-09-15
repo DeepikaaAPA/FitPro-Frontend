@@ -1,14 +1,11 @@
 import React from "react";
 import LandingBackground from "../assets/LandingBackground.jpg";
-
-import Navbar from "../components/NavBar";
-import Footer from "../components/LandingPage/Footer";
+import Footer from "../components/Footer";
 import Enquiryform from "../components/LandingPage/EnquiryForm";
 
 export default function LandingPage() {
   return (
     <>
-      <Navbar transparent />
       <main>
         <div
           className="relative pt-16 pb-32 flex content-center items-center justify-center"
