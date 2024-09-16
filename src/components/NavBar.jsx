@@ -9,7 +9,7 @@ export default function Navbar(props) {
   const [loggedInUser, setLoggedInUser] = useState("");
   useEffect(() => {
     if (user) {
-      setLoggedInUser(user.firstname);
+      setLoggedInUser(user);
     }
   }, [user]);
   return (
@@ -76,6 +76,33 @@ export default function Navbar(props) {
                   <span className="lg:hidden inline-block ml-2">Home</span>
                 </Link>
               </li>
+              {loggedInUser && (
+                <li className="flex items-center">
+                  <Link
+                    to={"/dashboard"}
+                    className={
+                      (props.transparent
+                        ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                        : "text-white-800 hover:text-gray-600") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    }
+                  >
+                      <i
+                    className={
+                      (props.transparent
+                        ? "lg:text-gray-300 text-gray-500"
+                        : "text-white-500") +
+                      " fa fa-user text-lg leading-lg "
+                    }
+                  />
+                    <span className=" inline-block ml-2">
+                      {"Welcome "}
+                      {user.firstname}
+                      {"!"}
+                    </span>
+                  </Link>
+                </li>
+              )}
               {!loggedInUser && (
                 <li className="flex items-center">
                   <Link
