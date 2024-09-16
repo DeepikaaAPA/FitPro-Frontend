@@ -7,19 +7,16 @@ import AdminDashboard from "./Pages/AdminDashboard";
 import Login from "./components/Login/Login";
 import Logout from "./components/Login/Logout";
 import Careers from "./Pages/Careers";
+import userLoader from "./loaders/userLoader";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Navbar />,
+    loader: userLoader,
     children: [
       {
         path: "",
         element: <LandingPage />,
-      },
-
-      {
-        path: "Login",
-        element: <Login></Login>,
       },
       {
         path: "/careers",
@@ -31,6 +28,14 @@ const router = createBrowserRouter([
         element: <AdminDashboard />,
       },
     ],
+  },
+  {
+    path: "logout",
+    element: <Logout></Logout>,
+  },
+  {
+    path: "login",
+    element: <Login></Login>,
   },
 
   // {

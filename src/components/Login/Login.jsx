@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../../assets/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterBg from "../../assets/RegisterBg.png";
@@ -25,6 +26,14 @@ export default function Login() {
     <>
       <main>
         <ToastContainer></ToastContainer>
+        <a
+          className={
+            "text-white-800 "  +
+            " text-sm font-bold leading-relaxed inline-block mr-4  whitespace-nowrap uppercase"
+          }
+        >
+          <img src={logo} className=" h-12 w-50 md:h-20 object-contain"></img>
+        </a>
         <section className="absolute w-full h-full">
           <div
             className="absolute top-0 w-full h-full bg-gray-900 opacity-90 "

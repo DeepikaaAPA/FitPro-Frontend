@@ -1,4 +1,3 @@
-import RegisterBg from ".././assets/RegisterBg.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApplicationForm from "../components/Trainer/ApplicationForm";
@@ -7,6 +6,7 @@ import instance from "../services/instance";
 export default function Careers() {
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
+
 
   const handleApplyNow = async (e) => {
     try {

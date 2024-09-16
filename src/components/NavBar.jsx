@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import logo from "../assets/logo.png";
 import { Link, Outlet } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const user = useLoaderData();
+  const [loggedInUser, setLoggedInUser] = useState("");
+  useEffect(() => {
+    if (user) {
+      setLoggedInUser(user.firstname);
+    }
+  }, [user]);
   return (
     <>
       <nav
@@ -67,29 +76,29 @@ export default function Navbar(props) {
                   <span className="lg:hidden inline-block ml-2">Home</span>
                 </Link>
               </li>
-
-              <li className="flex items-center">
-                <Link
-                  to={"/login"}
-                  className={
-                    (props.transparent
-                      ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                      : "text-white-800 hover:text-gray-600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  }
-                >
-                  <i
+              {!loggedInUser && (
+                <li className="flex items-center">
+                  <Link
+                    to={"/login"}
                     className={
                       (props.transparent
-                        ? "lg:text-gray-300 text-gray-500"
-                        : "text-white-500") +
-                      " fa fa-sign-in text-lg leading-lg "
+                        ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                        : "text-white-800 hover:text-gray-600") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     }
-                  />
-                  <span className=" inline-block ml-2"> Login</span>
-                </Link>
-              </li>
-
+                  >
+                    <i
+                      className={
+                        (props.transparent
+                          ? "lg:text-gray-300 text-gray-500"
+                          : "text-white-500") +
+                        " fa fa-sign-in text-lg leading-lg "
+                      }
+                    />
+                    <span className=" inline-block ml-2"> Login</span>
+                  </Link>
+                </li>
+              )}
               <li className="flex items-center">
                 <Link
                   className={
@@ -111,21 +120,23 @@ export default function Navbar(props) {
                   <span className=" inline-block ml-2">Careers</span>
                 </Link>
               </li>
-
-              <li className="flex items-center">
-                <button
-                  className={
-                    (props.transparent
-                      ? "bg-white text-gray-800 active:bg-gray-100"
-                      : "bg-pink-500 text-white active:bg-pink-600") +
-                    " text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                  }
-                  type="button"
-                  style={{ transition: "all .15s ease" }}
-                >
-                  <i className="fas fa-arrow-alt-circle-down"></i> Download
-                </button>
-              </li>
+              {loggedInUser && (
+                <li className="flex items-center">
+                  <Link
+                    to="/logout"
+                    className={
+                      (props.transparent
+                        ? "bg-white text-gray-800 active:bg-gray-100"
+                        : "bg-blue-500 text-white active:bg-gray-200") +
+                      " text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                    }
+                    type="button"
+                    style={{ transition: "all .15s ease" }}
+                  >
+                    Logout
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>

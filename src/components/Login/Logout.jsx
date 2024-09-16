@@ -15,7 +15,7 @@ const Logout = () => {
 
         // redirect to the login page
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 500);
       })
       .catch((error) => {
