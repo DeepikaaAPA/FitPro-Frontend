@@ -62,16 +62,13 @@ export default function Navbar(props) {
                   className={
                     (props.transparent
                       ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                      : "text-gray-800 hover:text-gray-600") +
+                      : "text-white-800 hover:text-white -600") +
                     " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   }
                 >
                   <i
-                    className={
-                      (props.transparent
-                        ? "lg:text-gray-300 text-white-500"
-                        : "text-gray-500") + " fa fa-home text-lg leading-lg "
-                    }
+                    className=" fa fa-home text-lg leading-lg "
+                    
                   />
                   <span className="lg:hidden inline-block ml-2">Home</span>
                 </Link>
@@ -87,14 +84,14 @@ export default function Navbar(props) {
                       " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     }
                   >
-                      <i
-                    className={
-                      (props.transparent
-                        ? "lg:text-gray-300 text-gray-500"
-                        : "text-white-500") +
-                      " fa fa-user text-lg leading-lg "
-                    }
-                  />
+                    <i
+                      className={
+                        (props.transparent
+                          ? "lg:text-gray-300 text-gray-500"
+                          : "text-white-500") +
+                        " fa fa-user text-lg leading-lg "
+                      }
+                    />
                     <span className=" inline-block ml-2">
                       {"Welcome "}
                       {user.firstname}

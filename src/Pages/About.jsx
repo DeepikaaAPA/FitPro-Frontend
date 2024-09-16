@@ -1,3 +1,6 @@
 const About = () => {
-  return <>Abouut usddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</>;
+  return (
+    <>Abouut usddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</>
+  );
 };
+export default About;
