@@ -8,7 +8,7 @@ export default function LandingPage() {
     <>
       <main>
         <div
-          className="relative pt-16 pb-32 flex content-center items-center justify-center"
+          className="relative pt-1 pb-32 flex content-center items-center justify-center"
           style={{
             minHeight: "75vh",
           }}
@@ -23,10 +23,10 @@ export default function LandingPage() {
             <div className="items-center flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
-                  <h1 className="text-white pt-2 font-semibold text-3xl">
+                  <h1 className="text-white  font-semibold text-3xl">
                     Welcome to{" "}
                     <span className=" text-4xl text-blue-300 p-3 ">
-                      Fit Pro 😃
+                      Fit Pro !
                     </span>
                     <br></br> Your ultimate fitness destination!
                   </h1>
@@ -74,9 +74,7 @@ export default function LandingPage() {
                     <p className="mt-2 mb-4 text-gray-600">
                       Our company is internationally acclaimed and awarded for
                       excellence in online fitness, providing top-tier programs
-                      and support to help you achieve your health goals. Join us
-                      and experience the best in fitness innovation and
-                      expertise!
+                      and support to help you achieve your health goals.
                     </p>
                   </div>
                 </div>
