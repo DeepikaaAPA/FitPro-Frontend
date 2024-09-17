@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import logo from "../assets/logo.png";
+import logo from "./images/logo.png";
 import { Link, Outlet } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 export default function Navbar(props) {
@@ -66,10 +66,7 @@ export default function Navbar(props) {
                     " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   }
                 >
-                  <i
-                    className=" fa fa-home text-lg leading-lg "
-                    
-                  />
+                  <i className=" fa fa-home text-lg leading-lg " />
                   <span className="lg:hidden inline-block ml-2">Home</span>
                 </Link>
               </li>

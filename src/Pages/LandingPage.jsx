@@ -1,5 +1,5 @@
 import React from "react";
-import LandingBackground from "../assets/LandingBackground.jpg";
+import LandingBackground from "../components/images/LandingBackground.jpg";
 import Footer from "../components/Footer";
 import Enquiryform from "../components/LandingPage/EnquiryForm";
 

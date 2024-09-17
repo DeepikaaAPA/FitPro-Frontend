@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RegisterBg from "../../assets/RegisterBg.png";
+import RegisterBg from "../images/RegisterBg.png";
 import instance from "../../services/instance";
 import { useNavigate } from "react-router-dom";
 export default function Register() {
@@ -28,7 +28,7 @@ export default function Register() {
         <ToastContainer></ToastContainer>
         <a
           className={
-            "text-white-800 "  +
+            "text-white-800 " +
             " text-sm font-bold leading-relaxed inline-block mr-4  whitespace-nowrap uppercase"
           }
         >
