@@ -18,7 +18,10 @@ const ApplicationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     toast("Application submitted. We will contact you wihin 10 business days.");
-    // Handle form submission logic here
+    // form submission logic 
+    
+
+
     console.log("Form submitted:", formData);
   };
 
