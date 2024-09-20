@@ -6,12 +6,26 @@ import instance from "../services/instance";
 export default function Careers() {
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
-
+  const [user, setUser] = useState({
+    firstname: "",
+    lastname: "",
+    userId: "",
+    email: "",
+  });
 
   const handleApplyNow = async (e) => {
     try {
       const response = await instance.get("/auth/me");
-      if (response.data) setShowForm(true);
+      const { firstname, lastname, email, _id: userId } = response.data;
+      if (response.data) {
+        setShowForm(true);
+        setUser({
+          firstname,
+          lastname,
+          email,
+          userId,
+        });
+      }
     } catch (error) {
       navigate("/login");
       console.error("Error fetching user:", error);
@@ -58,7 +72,7 @@ export default function Careers() {
             Apply Now
           </button>
         </div>
-        {showForm && <ApplicationForm />}
+        {showForm && <ApplicationForm user={user} />}
       </div>
     </>
   );

@@ -1,28 +1,36 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import PhoneInput from "react-phone-number-input/input";
 import "react-toastify/dist/ReactToastify.css";
-const ApplicationForm = () => {
+import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
+import instance from "../../services/instance";
+const ApplicationForm = ({ user }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    name: user.firstname + " " + user.lastname,
+    email: user.email,
+    phone: "",
     discipline: "",
     experience: "",
-    certification: "",
   });
 
   const handleChange = (e) => {
+    console.log("handle change ");
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    toast("Application submitted. We will contact you wihin 10 business days.");
-    // form submission logic 
-    
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await instance.post("/trainer/postApplication", {
+        ...formData,
+      });
 
-
-    console.log("Form submitted:", formData);
+      toast(response.data.message);
+      console.log("Form submitted:", formData);
+    } catch (error) {
+      toast(error?.response?.data?.message || "An error occured.");
+    }
   };
 
   return (
@@ -41,9 +49,8 @@ const ApplicationForm = () => {
             id="name"
             name="name"
             value={formData.name}
-            onChange={handleChange}
+            readOnly
             className="w-full p-2 rounded bg-gray-800 text-blue-200 border border-blue-400"
-            required
           />
         </div>
         <div>
@@ -55,9 +62,19 @@ const ApplicationForm = () => {
             id="email"
             name="email"
             value={formData.email}
-            onChange={handleChange}
+            readOnly
+            className="w-full p-2 rounded bg-gray-800 text-blue-200 border border-blue-400"
+          />
+        </div>
+        <div>
+          <label className="block text-blue-200 mb-2">Phone Number:</label>
+          <input
+            type="tel"
+            name="phone"
             className="w-full p-2 rounded bg-gray-800 text-blue-200 border border-blue-400"
             required
+            value={formData.phone}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -96,20 +113,7 @@ const ApplicationForm = () => {
             required
           />
         </div>
-        <div>
-          <label className="block text-blue-200 mb-2" htmlFor="certification">
-            Certification
-          </label>
-          <input
-            type="text"
-            id="certification"
-            name="certification"
-            value={formData.certification}
-            onChange={handleChange}
-            className="w-full p-2 rounded bg-gray-800 text-blue-200 border border-blue-400"
-            required
-          />
-        </div>
+
         <div className="flex justify-center mt-4">
           <button
             type="submit"
