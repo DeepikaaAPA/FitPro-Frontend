@@ -8,6 +8,8 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Login/Logout";
 import Careers from "./Pages/Careers";
 import userLoader from "./loaders/userLoader";
+import ViewEnquiries from "./components/Admin/ViewEnquiries";
+import ViewApplications from "./components/Admin/ViewApplications";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +28,16 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <AdminDashboard />,
+        children: [
+          {
+            path: "enquiries",
+            element: <ViewEnquiries />,
+          },
+          {
+            path: "applications",
+            element: <ViewApplications />,
+          },
+        ],
       },
     ],
   },
