@@ -1,22 +1,30 @@
 import React, { useState } from "react";
-import logo from "../../assets/logo.png";
+import logo from "../images/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterBg from "../images/RegisterBg.png";
 import instance from "../../services/instance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Register() {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await instance.post("/auth/login", { email, password });
+      const response = await instance.post("/auth/register", {
+        firstname,
+        lastname,
+        email,
+        password,
+      });
       toast(response.data.message);
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      setFirstname("");
+      setLastname("");
+      setEmail("");
+      setPassword("");
     } catch (error) {
       console.log(error?.response?.data?.message);
       toast(error?.response?.data?.message || "An error occured.");
@@ -26,14 +34,9 @@ export default function Register() {
     <>
       <main>
         <ToastContainer></ToastContainer>
-        <a
-          className={
-            "text-white-800 " +
-            " text-sm font-bold leading-relaxed inline-block mr-4  whitespace-nowrap uppercase"
-          }
-        >
+        <div className={"text-white-800  bg-gray-900"}>
           <img src={logo} className=" h-12 w-50 md:h-20 object-contain"></img>
-        </a>
+        </div>
         <section className="absolute w-full h-full">
           <div
             className="absolute top-0 w-full h-full bg-gray-900 opacity-90 "
@@ -49,9 +52,35 @@ export default function Register() {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
                   <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <div className="text-gray-500 text-center mt-5 font-bold">
-                      <small>Sign in with credentials</small>
+                      <small>Create a new account</small>
                     </div>
                     <form onSubmit={handleSubmit}>
+                      <div className="relative w-full mb-3">
+                        <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
+                          First name
+                        </label>
+                        <input
+                          type="text"
+                          className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                          placeholder="First name"
+                          style={{ transition: "all .15s ease" }}
+                          value={firstname}
+                          onChange={(e) => setFirstname(e.target.value)}
+                        />
+                      </div>
+                      <div className="relative w-full mb-3">
+                        <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
+                          Last name
+                        </label>
+                        <input
+                          type="text"
+                          className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                          placeholder="last name"
+                          style={{ transition: "all .15s ease" }}
+                          value={lastname}
+                          onChange={(e) => setLastname(e.target.value)}
+                        />
+                      </div>
                       <div className="relative w-full mb-3">
                         <label
                           className="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -92,28 +121,20 @@ export default function Register() {
                           type="submit"
                           style={{ transition: "all .15s ease" }}
                         >
-                          Sign In
+                          Register{" "}
                         </button>
                       </div>
                     </form>
                     <div className="flex flex-wrap mt-2  bg-white-900 ">
                       <div className="w-1/2">
-                        <a
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                          className="text-blue-800"
-                        >
+                        <Link href="forgot-password" className="text-blue-800">
                           <small>Forgot password?</small>
-                        </a>
+                        </Link>
                       </div>
                       <div className="w-1/2 text-right">
-                        <a
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                          className="text-blue-800"
-                        >
-                          <small>Create new account</small>
-                        </a>
+                        <Link to="/login" className="text-blue-800">
+                          <small>Login</small>
+                        </Link>
                       </div>
                     </div>
                   </div>

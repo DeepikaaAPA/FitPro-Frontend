@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterBg from "../images/RegisterBg.png";
 import instance from "../../services/instance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,14 +26,13 @@ export default function Login() {
     <>
       <main>
         <ToastContainer></ToastContainer>
-        <a
+        <div
           className={
-            "text-white-800 " +
-            " text-sm font-bold leading-relaxed inline-block mr-4  whitespace-nowrap uppercase"
+            "text-white-800  bg-gray-900"
           }
         >
           <img src={logo} className=" h-12 w-50 md:h-20 object-contain"></img>
-        </a>
+        </div>
         <section className="absolute w-full h-full">
           <div
             className="absolute top-0 w-full h-full bg-gray-900 opacity-90 "
@@ -107,13 +106,9 @@ export default function Login() {
                         </a>
                       </div>
                       <div className="w-1/2 text-right">
-                        <a
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                          className="text-blue-800"
-                        >
+                        <Link to="/register" className="text-blue-800">
                           <small>Create new account</small>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

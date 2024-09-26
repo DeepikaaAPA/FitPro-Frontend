@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import PhoneInput from "react-phone-number-input/input";
+
 import "react-toastify/dist/ReactToastify.css";
-import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
+import { Alert } from "@material-tailwind/react";
 import instance from "../../services/instance";
 const ApplicationForm = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -12,6 +11,7 @@ const ApplicationForm = ({ user }) => {
     discipline: "",
     experience: "",
   });
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     console.log("handle change ");
@@ -26,10 +26,10 @@ const ApplicationForm = ({ user }) => {
         ...formData,
       });
 
-      toast(response.data.message);
+      setMessage(response.data.message);
       console.log("Form submitted:", formData);
     } catch (error) {
-      toast(error?.response?.data?.message || "An error occured.");
+      setMessage(error?.response?.data?.message || "An error occured.");
     }
   };
 
@@ -38,7 +38,6 @@ const ApplicationForm = ({ user }) => {
       <h2 className="text-2xl  text-center font-bold mb-4 text-blue-400">
         Application Form
       </h2>
-      <ToastContainer></ToastContainer>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-blue-200 mb-2" htmlFor="name">
@@ -119,10 +118,11 @@ const ApplicationForm = ({ user }) => {
             type="submit"
             className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
           >
-            Submit Application
+            Submit
           </button>
         </div>
       </form>
+      {message != ""}?<Alert color="orange">{message}</Alert>:""
     </div>
   );
 };
