@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApplicationForm from "../components/Trainer/ApplicationForm";
 
@@ -11,21 +11,27 @@ export default function Careers() {
     lastname: "",
     userId: "",
     email: "",
+    role: "",
   });
-
-  const handleApplyNow = async (e) => {
-    try {
+  useEffect(() => {
+    const getme = async () => {
       const response = await instance.get("/auth/me");
-      const { firstname, lastname, email, _id: userId } = response.data;
+      const { firstname, lastname, email, _id: userId, role } = response.data;
       if (response.data) {
-        setShowForm(true);
         setUser({
           firstname,
           lastname,
           email,
           userId,
+          role,
         });
       }
+    };
+    getme();
+  }, []);
+  const handleApplyNow = async (e) => {
+    try {
+      setShowForm(true);
     } catch (error) {
       navigate("/login");
       console.error("Error fetching user:", error);
@@ -63,15 +69,17 @@ export default function Careers() {
           committed to helping clients achieve their fitness goals. Apply now to
           be a part of our dynamic team!
         </p>
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={handleApplyNow}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
-            type="submit"
-          >
-            Apply Now
-          </button>
-        </div>
+        {user.role !== "trainer" && (
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={handleApplyNow}
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+              type="submit"
+            >
+              Apply Now
+            </button>
+          </div>
+        )}
         {showForm && <ApplicationForm user={user} />}
       </div>
     </>

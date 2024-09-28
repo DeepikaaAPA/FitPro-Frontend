@@ -12,7 +12,13 @@ import userLoader from "./loaders/userLoader";
 import ViewEnquiries from "./components/Admin/ViewEnquiries";
 import ViewApplications from "./components/Admin/ViewApplications";
 import Register from "./components/Login/Register";
+import UserDashboard from "./Pages/UserDashboard";
+import TrainerDashboard from "./Pages/TrainerDashboard";
 import { tokenLoader } from "./loaders/paramsLoader";
+import UserProfile from "./components/User/UserProfile";
+import TrainerProfile from "./components/Trainer/TrainerProfile";
+import TrainerBookings from "./components/Trainer/TrainerBookings";
+import TrainerAccount from "./components/Trainer/TrainerAccount";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +31,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/careers",
-
         element: <Careers />,
       },
       {
@@ -39,6 +44,38 @@ const router = createBrowserRouter([
           {
             path: "applications",
             element: <ViewApplications />,
+          },
+        ],
+      },
+      {
+        path: "/user",
+        element: <UserDashboard />,
+        children: [
+          {
+            path: "profile",
+            element: <UserProfile />,
+          },
+          // {
+          //   path: "upcoming",
+          //   element: <Upcoming />,
+          // },
+          // {
+          //   path: "history",
+          //   element: <History />,
+          // },
+        ],
+      },
+      {
+        path: "/trainer",
+        element: <TrainerDashboard />,
+        children: [
+          {
+            path: "",
+            element: <TrainerAccount />,
+          },
+          {
+            path: "bookings",
+            element: <TrainerBookings />,
           },
         ],
       },

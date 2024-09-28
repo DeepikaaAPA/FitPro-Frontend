@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-
+import { useSelector } from "react-redux";
 import logo from "./images/logo.png";
 import { Link, Outlet } from "react-router-dom";
-import { useLoaderData } from "react-router-dom";
+
 export default function Navbar(props) {
+  const { user } = useSelector((state) => state.user);
+  console.log("user1,", user);
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const user = useLoaderData();
+
   const [loggedInUser, setLoggedInUser] = useState("");
   useEffect(() => {
     if (user) {
@@ -73,7 +75,7 @@ export default function Navbar(props) {
               {loggedInUser && (
                 <li className="flex items-center">
                   <Link
-                    to={"/dashboard"}
+                    to={"/user"}
                     className={
                       (props.transparent
                         ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
@@ -94,6 +96,29 @@ export default function Navbar(props) {
                       {user.firstname}
                       {"!"}
                     </span>
+                  </Link>
+                </li>
+              )}
+              {loggedInUser.role === "trainer" && (
+                <li className="flex items-center">
+                  <Link
+                    to={"/trainer"}
+                    className={
+                      (props.transparent
+                        ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                        : "text-white-800 hover:text-gray-600") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    }
+                  >
+                    <i
+                      className={
+                        (props.transparent
+                          ? "lg:text-gray-300 text-gray-500"
+                          : "text-white-500") +
+                        " fa fa-user text-lg leading-lg "
+                      }
+                    />
+                    <span className=" inline-block ml-2">Trainer Account</span>
                   </Link>
                 </li>
               )}

@@ -5,20 +5,24 @@ import "react-toastify/dist/ReactToastify.css";
 import RegisterBg from "../images/RegisterBg.png";
 import instance from "../../services/instance";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../features/userSlice";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await instance.post("/auth/login", { email, password });
-      toast(response.data.message);
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      const { userId, firstname, lastname, role } = response.data;
+
+      console.log({ userId, firstname, lastname, role, email });
+      dispatch(login({ userId, firstname, lastname, role, email }));
+      navigate("/");
     } catch (error) {
-      console.log(error?.response?.data?.message);
+      console.log(error);
       toast(error?.response?.data?.message || "An error occured.");
     }
   };
@@ -26,11 +30,7 @@ export default function Login() {
     <>
       <main>
         <ToastContainer></ToastContainer>
-        <div
-          className={
-            "text-white-800  bg-gray-900"
-          }
-        >
+        <div className={"text-white-800  bg-gray-900"}>
           <img src={logo} className=" h-12 w-50 md:h-20 object-contain"></img>
         </div>
         <section className="absolute w-full h-full">

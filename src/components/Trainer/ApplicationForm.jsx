@@ -4,17 +4,19 @@ import "react-toastify/dist/ReactToastify.css";
 import { Alert } from "@material-tailwind/react";
 import instance from "../../services/instance";
 const ApplicationForm = ({ user }) => {
+  console.log(user);
   const [formData, setFormData] = useState({
-    name: user.firstname + " " + user.lastname,
+    firstname: user.firstname,
+    lastname: user.lastname,
     email: user.email,
     phone: "",
     discipline: "",
     experience: "",
+    userId: user.userId,
   });
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
-    console.log("handle change ");
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -47,7 +49,7 @@ const ApplicationForm = ({ user }) => {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={formData.firstname + " " + formData.lastname}
             readOnly
             className="w-full p-2 rounded bg-gray-800 text-blue-200 border border-blue-400"
           />

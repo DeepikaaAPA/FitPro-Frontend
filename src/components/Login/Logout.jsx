@@ -2,17 +2,18 @@ import { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import instance from "../../services/instance";
-
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/userSlice";
 const Logout = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     // perform the logout
     instance
       .post("/auth/logout")
       .then((response) => {
         alert(response.data.message);
-
+        dispatch(logout());
         // redirect to the login page
         setTimeout(() => {
           navigate("/");
