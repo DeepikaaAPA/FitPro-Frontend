@@ -19,7 +19,7 @@ const TrainerAccount = () => {
     video: "",
     price: "",
     languages: "",
-    awards: [], // Add awards array
+    awards: [],
     qualifications: [],
   });
 
@@ -29,9 +29,8 @@ const TrainerAccount = () => {
     instance
       .get(`/trainer/${trainerId}`)
       .then((response) => {
-        console.log(response.data);
-        setFormData({ ...formData, ...response.data });
-        setInitialData(formData);
+        setFormData({ ...formData, ...response.data, images: [] });
+        setInitialData(response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the trainer data!", error);
@@ -103,38 +102,34 @@ const TrainerAccount = () => {
   };
 
   const handleSave = async () => {
-    //console.log(formData);
     const dpData = new FormData();
     dpData.append("profilePic", formData.profilePic);
     try {
-      const res = await instance.post(`/trainer/dp/${trainerId}`, formData, {
+      const res = await instance.post(`/trainer/dp/${trainerId}`, dpData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("response", res);
     } catch (err) {
+      alert("error uploading profile picture");
       console.log(err);
     }
-    const data = new FormData();
-    data.append("firstname", formData.firstname);
-    data.append("email", formData.email);
-    data.append("lastname", formData.lastname);
-    data.append("disciplines", formData.disciplines);
-    data.append("experience", formData.experience);
-    data.append("phone", formData.phone);
-    data.append("images", formData.images);
-    data.append("profilePic", formData.profilePic);
-    data.append("video", formData.video);
-    data.append("price", formData.price);
-    data.append("languages", formData.languages);
-    data.append("awards", formData.awards);
-    data.append("description", formData.description);
-    data.append("qualifications", formData.qualifications);
+    const imgData = new FormData();
+    formData.images.forEach((image, index) => {
+      imgData.append(`images`, image);
+    });
+    try {
+      const res = await instance.post(`/trainer/images/${trainerId}`, imgData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (err) {
+      alert("error uploading images");
+      console.log(err);
+    }
     instance
-      .post(`/trainer/${trainerId}`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .post(`/trainer/${trainerId}`, formData)
       .then((response) => {
         console.log("Data saved successfully", response.data);
       })
@@ -160,7 +155,7 @@ const TrainerAccount = () => {
           name="firstname"
           value={formData.firstname}
           onChange={handleChange}
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
       <div className="mb-4">
@@ -170,7 +165,7 @@ const TrainerAccount = () => {
           name="lastname"
           value={formData.lastname}
           onChange={handleChange}
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
       <div className="mb-4">
@@ -180,7 +175,7 @@ const TrainerAccount = () => {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
       <div className="mb-4">
@@ -201,7 +196,7 @@ const TrainerAccount = () => {
           onChange={(e) =>
             setFormData({ ...formData, profilePic: e.target.files[0] })
           }
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
       <div className="mb-4 ">
@@ -288,7 +283,7 @@ const TrainerAccount = () => {
           name="experience"
           value={formData.experience}
           onChange={handleChange}
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
       <div className="mb-4">
@@ -297,27 +292,37 @@ const TrainerAccount = () => {
           name="description"
           value={formData.description}
           onChange={handleChange}
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
       <div className="mb-4">
         <label className="block mb-1">Images</label>
-        {formData.images.map((image, index) => (
-          <div key={index} className="mb-2">
-            <img
-              src={URL.createObjectURL(image)}
-              alt={`Upload ${index}`}
-              className="w-full"
-            />
-            <button onClick={() => removeImage(index)}>Remove</button>
-          </div>
-        ))}
+        {formData.images?.map((image, index) =>
+          image ? (
+            <div key={index} className="mb-2">
+              <img
+                src={URL.createObjectURL(image)}
+                alt={`Upload ${index}`}
+                className="h-20 w-20"
+              />
+              <button
+                className="text-white rounded small  bg-red-500 p-1 "
+                onClick={() => removeImage(index)}
+              >
+                {" "}
+                - Remove
+              </button>
+            </div>
+          ) : (
+            ""
+          )
+        )}
         {formData.images.length < 10 && (
           <input
             type="file"
             name="images"
             onChange={handleImageUpload}
-            className="w-full border p-2 rounded text-gray-500"
+            className="text-sm w-full border p-2 rounded text-gray-500"
           />
         )}
       </div>
@@ -329,7 +334,7 @@ const TrainerAccount = () => {
           onChange={(e) =>
             setFormData({ ...formData, video: e.target.files[0] })
           }
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
       <div className="mb-4">
@@ -339,7 +344,7 @@ const TrainerAccount = () => {
           name="price"
           value={formData.price}
           onChange={handleChange}
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
       <div className="mb-4">
@@ -349,7 +354,7 @@ const TrainerAccount = () => {
           name="languages"
           value={formData.languages}
           onChange={handleChange}
-          className="w-full border p-2 rounded text-gray-500"
+          className="text-sm w-full border p-2 rounded text-gray-500"
         />
 
         <label className="block mb-1">Awards</label>
@@ -359,7 +364,7 @@ const TrainerAccount = () => {
               type="text"
               value={award}
               onChange={(e) => handleAwardChange(index, e.target.value)}
-              className="w-full border p-2 rounded mr-2"
+              className="text-gray-700 text-sm w-full border p-2 rounded mr-2"
             />
             <button
               onClick={() => removeAward(index)}
@@ -377,15 +382,6 @@ const TrainerAccount = () => {
         </button>
       </div>
       <div className="mb-4">
-        <label className="block mb-1">Languages</label>
-        <input
-          type="text"
-          name="languages"
-          value={formData.languages}
-          onChange={handleChange}
-          className="w-full border p-2 rounded text-gray-500"
-        />
-
         <label className="block mb-1">Qualifications</label>
         {formData.qualifications.map((qualification, index) => (
           <div key={index} className="mb-2 flex items-center">
@@ -393,7 +389,7 @@ const TrainerAccount = () => {
               type="text"
               value={qualification}
               onChange={(e) => handleQualificationChange(index, e.target.value)}
-              className="w-full border p-2 rounded mr-2"
+              className="text-gray-700 text-sm w-full border p-2 rounded mr-2"
             />
             <button
               onClick={() => removeQualification(index)}
