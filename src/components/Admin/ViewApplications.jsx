@@ -26,7 +26,7 @@ const ViewApplications = () => {
       .then((response) => {
         setActions((prevStatus) => ({
           ...prevStatus,
-          [id]: "Approved",
+          [id]: "✓ Approved",
         }));
       })
       .catch((error) => {
@@ -42,7 +42,7 @@ const ViewApplications = () => {
 
         setActions((prevStatus) => ({
           ...prevStatus,
-          [id]: "Rejected",
+          [id]: "x Rejected",
         }));
         setEnquiries(
           enquiries.map((enquiry) =>
@@ -59,7 +59,10 @@ const ViewApplications = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-center text-2xl font-bold text-green-700 "> APPLICATIONS FOR TRAINER </h2>
+      <h2 className="text-center text-2xl font-bold text-green-700 ">
+        {" "}
+        APPLICATIONS FOR TRAINER{" "}
+      </h2>
 
       {enquiries.length ? (
         <table className="min-w-full border border-gray-200">

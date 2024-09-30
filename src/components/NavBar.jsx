@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 import logo from "./images/logo.png";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLoaderData } from "react-router-dom";
 
 export default function Navbar(props) {
-  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const user = useLoaderData();
+  user && dispatch(login({ userId: user._id, ...user }));
+
   console.log("user1,", user);
   const [navbarOpen, setNavbarOpen] = useState(false);
 

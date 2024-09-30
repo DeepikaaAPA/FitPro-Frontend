@@ -4,7 +4,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { Alert } from "@material-tailwind/react";
 import instance from "../../services/instance";
 const ApplicationForm = ({ user }) => {
-  console.log(user);
   const [formData, setFormData] = useState({
     firstname: user.firstname,
     lastname: user.lastname,
@@ -29,7 +28,6 @@ const ApplicationForm = ({ user }) => {
       });
 
       setMessage(response.data.message);
-      console.log("Form submitted:", formData);
     } catch (error) {
       setMessage(error?.response?.data?.message || "An error occured.");
     }
@@ -94,7 +92,7 @@ const ApplicationForm = ({ user }) => {
             <option value="Yoga">Yoga</option>
             <option value="Cardio">Cardio</option>
             <option value="Strength Training">Strength Training</option>
-            <option value="Physiotherapy">Physiotherapy</option>
+            <option value="Pilates">Pilates</option>
             <option value="Aerobics">Aerobics</option>
             <option value="Zumba">Zumba</option>
             <option value="Postpartum Fitness">Postpartum Fitness</option>

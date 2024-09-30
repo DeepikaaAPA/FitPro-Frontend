@@ -1,34 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApplicationForm from "../components/Trainer/ApplicationForm";
+import { useSelector } from "react-redux";
 
-import instance from "../services/instance";
+
 export default function Careers() {
+
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
-    userId: "",
-    email: "",
-    role: "",
-  });
-  useEffect(() => {
-    const getme = async () => {
-      const response = await instance.get("/auth/me");
-      const { firstname, lastname, email, _id: userId, role } = response.data;
-      if (response.data) {
-        setUser({
-          firstname,
-          lastname,
-          email,
-          userId,
-          role,
-        });
-      }
-    };
-    getme();
-  }, []);
+  const { user } = useSelector((state) => state.user);
+ 
   const handleApplyNow = async (e) => {
     try {
       setShowForm(true);
