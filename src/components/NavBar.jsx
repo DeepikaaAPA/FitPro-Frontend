@@ -8,9 +8,6 @@ export default function Navbar(props) {
   const dispatch = useDispatch();
 
   const user = useLoaderData();
-  user && dispatch(login({ userId: user._id, ...user }));
-
-  console.log("user1,", user);
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   const [loggedInUser, setLoggedInUser] = useState("");
@@ -19,6 +16,12 @@ export default function Navbar(props) {
       setLoggedInUser(user);
     }
   }, [user]);
+
+  user && dispatch(login({ userId: user._id, ...user }));
+
+  console.log("user,", user);
+ 
+ 
   return (
     <>
       <nav
@@ -63,6 +66,21 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+            <li className="flex items-center border mr-2 ">
+              <input className="h-full" type="text" placeholder="Search for trainers..."></input>
+                <Link
+                  to={"/browse"}
+                  className={
+                    (props.transparent
+                      ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                      : "text-white-800 hover:text-white -600") +
+                    " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  }
+                >
+                  <i className=" fa fa-search text-lg leading-lg " />
+                  <span className=" button rounded  inline-block ml-2">Search</span>
+                </Link>
+              </li>
               <li className="flex items-center">
                 <Link
                   to={"/"}

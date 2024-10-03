@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import instance from "../../services/instance";
 import { useSelector } from "react-redux";
-
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 const TrainerAccount = () => {
   const { user } = useSelector((state) => state.user);
   const trainerId = user?.userId;
@@ -27,7 +28,7 @@ const TrainerAccount = () => {
 
   useEffect(() => {
     instance
-      .get(`/trainer/${trainerId}`)
+      .get(`/trainer/get/${trainerId}`)
       .then((response) => {
         setFormData({ ...formData, ...response.data, images: [] });
         setInitialData(response.data);
@@ -128,9 +129,29 @@ const TrainerAccount = () => {
       alert("error uploading images");
       console.log(err);
     }
+    const videoData = new FormData();
+
+    videoData.append(`video`, formData.video);
+
+    try {
+      const res = await instance.post(
+        `/trainer/video/${trainerId}`,
+        videoData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+    } catch (err) {
+      alert("error uploading video");
+      console.log(err);
+    }
+    //console.log(formData);
     instance
       .post(`/trainer/${trainerId}`, formData)
       .then((response) => {
+        toast("Changes saved.");
         console.log("Data saved successfully", response.data);
       })
       .catch((error) => {
@@ -144,6 +165,7 @@ const TrainerAccount = () => {
 
   return (
     <div className="p-4  text-blue-900 mx-3  bg-white rounded-lg shadow-md">
+      <ToastContainer></ToastContainer>
       <h2 className="text-2xl text-blue-400 font-bold mb-4">
         Trainer Account{" "}
       </h2>

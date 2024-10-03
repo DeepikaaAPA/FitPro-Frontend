@@ -19,6 +19,7 @@ import UserProfile from "./components/User/UserProfile";
 import TrainerProfile from "./components/Trainer/TrainerProfile";
 import TrainerBookings from "./components/Trainer/TrainerBookings";
 import TrainerAccount from "./components/Trainer/TrainerAccount";
+import Browse from "./Pages/Browse";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "/careers",
         element: <Careers />,
+      },
+      {
+        path: "/browse",
+        element: <Browse />,
+      },
+      {
+        path: "/profile",
+        element: <TrainerProfile />,
       },
       {
         path: "/admin",
@@ -74,8 +83,8 @@ const router = createBrowserRouter([
             element: <TrainerAccount />,
           },
           {
-            path: "bookings",
-            element: <TrainerBookings />,
+            path: "profile",
+            element: <TrainerProfile />,
           },
         ],
       },
