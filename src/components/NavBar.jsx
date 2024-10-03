@@ -18,10 +18,6 @@ export default function Navbar(props) {
   }, [user]);
 
   user && dispatch(login({ userId: user._id, ...user }));
-
-  console.log("user,", user);
- 
- 
   return (
     <>
       <nav
@@ -32,12 +28,12 @@ export default function Navbar(props) {
           " flex flex-wrap items-center justify-between px-2 "
         }
       >
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <div className="container  px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <a
               className={
                 (props.transparent ? "text-white" : "text-white-800") +
-                " text-sm font-bold leading-relaxed inline-block mr-4  whitespace-nowrap uppercase"
+                " text-sm font-bold leading-relaxed inline-block mr-4  whitespace-nowrap capitalize"
               }
             >
               <img
@@ -66,19 +62,25 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-            <li className="flex items-center border mr-2 ">
-              <input className="h-full" type="text" placeholder="Search for trainers..."></input>
+              <li className="flex items-center border mr-2 ">
+                <input
+                  className="h-full"
+                  type="text"
+                  placeholder="Search for trainers..."
+                ></input>
                 <Link
                   to={"/browse"}
                   className={
                     (props.transparent
                       ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                       : "text-white-800 hover:text-white -600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
                   }
                 >
                   <i className=" fa fa-search text-lg leading-lg " />
-                  <span className=" button rounded  inline-block ml-2">Search</span>
+                  <span className=" button rounded  inline-block ml-2">
+                    Search
+                  </span>
                 </Link>
               </li>
               <li className="flex items-center">
@@ -88,7 +90,7 @@ export default function Navbar(props) {
                     (props.transparent
                       ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                       : "text-white-800 hover:text-white -600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
                   }
                 >
                   <i className=" fa fa-home text-lg leading-lg " />
@@ -103,7 +105,7 @@ export default function Navbar(props) {
                       (props.transparent
                         ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                         : "text-white-800 hover:text-gray-600") +
-                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
                     }
                   >
                     <i
@@ -130,7 +132,7 @@ export default function Navbar(props) {
                       (props.transparent
                         ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                         : "text-white-800 hover:text-gray-600") +
-                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
                     }
                   >
                     <i
@@ -153,7 +155,7 @@ export default function Navbar(props) {
                       (props.transparent
                         ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                         : "text-white-800 hover:text-gray-600") +
-                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
                     }
                   >
                     <i
@@ -174,7 +176,7 @@ export default function Navbar(props) {
                     (props.transparent
                       ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                       : "text-white-800 hover:text-gray-600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
                   }
                   to="/careers"
                 >
@@ -197,7 +199,7 @@ export default function Navbar(props) {
                       (props.transparent
                         ? "bg-white text-gray-800 active:bg-gray-100"
                         : "bg-blue-500 text-white active:bg-gray-200") +
-                      " text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                      " text-xs font-bold capitalize px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
                     }
                     type="button"
                     style={{ transition: "all .15s ease" }}
