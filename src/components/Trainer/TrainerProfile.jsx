@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import instance from "../../services/instance";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 export default function TrainerProfile() {
   const location = useLocation();
-  const { trainerIdProp } = location.state;
+  let trainerIdProp = location?.state?.trainerIdProp || null;
+
   console.log("prop", trainerIdProp);
   const { user } = useSelector((state) => state.user);
   const trainerId = trainerIdProp || user?.userId;
