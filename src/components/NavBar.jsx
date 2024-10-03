@@ -63,11 +63,7 @@ export default function Navbar(props) {
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center border mr-2 ">
-                <input
-                  className="h-full"
-                  type="text"
-                  placeholder="Search for trainers..."
-                ></input>
+            
                 <Link
                   to={"/browse"}
                   className={
