@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import instance from "../../services/instance";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import Book from "./Book";
 export default function TrainerProfile() {
   const location = useLocation();
   let trainerIdProp = location?.state?.trainerIdProp || null;
 
-  console.log("prop", trainerIdProp);
   const { user } = useSelector((state) => state.user);
   const trainerId = trainerIdProp || user?.userId;
-  console.log("trainerid", trainerId);
+
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -81,7 +82,6 @@ export default function TrainerProfile() {
                     <div className="relative">
                       <img
                         alt="..."
-                        src={"http://localhost:3001/" + data.profilePic}
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                         style={{ maxWidth: "150px" }}
                       />
@@ -89,15 +89,14 @@ export default function TrainerProfile() {
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div className="py-6 px-3 mt-32 sm:mt-0">
-                      <button
-                        className="bg-green-500 active:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        Book
-                      </button>
+                      <Book
+                        trainerId={trainerId}
+                        user={user}
+                        trainer={data}
+                      ></Book>
                     </div>
                   </div>
+
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">
                     <div className="flex justify-center py-4 lg:pt-4 pt-8">
                       <div className="mr-4 p-3 text-center">
@@ -115,10 +114,10 @@ export default function TrainerProfile() {
                         <span className="text-sm text-gray-500">Rating</span>
                       </div>
                       <div className="lg:mr-4 p-3 text-center">
-                        <span className="text-xl font-bold block uppercase tracking-wide text-blue-400">
-                          89
+                        <span className="text-xl text-green-700 font-bold block  tracking-wide">
+                          Rs.{data.price}
                         </span>
-                        <span className="text-sm text-gray-500">Trainees</span>
+                        <span className="text-sm text-gray-500">Price</span>
                       </div>
                     </div>
                   </div>

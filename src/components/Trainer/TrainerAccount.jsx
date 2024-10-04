@@ -149,7 +149,7 @@ const TrainerAccount = () => {
     }
     //console.log(formData);
     instance
-      .post(`/trainer/${trainerId}`, formData)
+      .post(`/trainer/update/${trainerId}`, formData)
       .then((response) => {
         toast("Changes saved.");
         console.log("Data saved successfully", response.data);

@@ -63,7 +63,6 @@ export default function Navbar(props) {
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center border mr-2 ">
-            
                 <Link
                   to={"/browse"}
                   className={
@@ -120,6 +119,20 @@ export default function Navbar(props) {
                   </Link>
                 </li>
               )}
+              <li className="flex items-center  mr-2 ">
+                <Link
+                  to={"/cart"}
+                  className={
+                    (props.transparent
+                      ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                      : "text-white-800 hover:text-white -600") +
+                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                  }
+                >
+                  <i className=" fa fa-shopping-cart text-lg leading-lg " />
+                  <span className="   inline-block ml-2">Cart</span>
+                </Link>
+              </li>
               {loggedInUser.role === "trainer" && (
                 <li className="flex items-center">
                   <Link

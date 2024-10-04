@@ -19,7 +19,9 @@ import UserProfile from "./components/User/UserProfile";
 import TrainerProfile from "./components/Trainer/TrainerProfile";
 import TrainerBookings from "./components/Trainer/TrainerBookings";
 import TrainerAccount from "./components/Trainer/TrainerAccount";
+import Upcoming from "./components/User/Upcoming";
 import Browse from "./Pages/Browse";
+import Cart from "./components/User/Cart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
         element: <TrainerProfile />,
       },
       {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
         path: "/admin",
         element: <AdminDashboard />,
         children: [
@@ -64,10 +70,10 @@ const router = createBrowserRouter([
             path: "profile",
             element: <UserProfile />,
           },
-          // {
-          //   path: "upcoming",
-          //   element: <Upcoming />,
-          // },
+          {
+            path: "upcoming",
+            element: <Upcoming />,
+          },
           // {
           //   path: "history",
           //   element: <History />,

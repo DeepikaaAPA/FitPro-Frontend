@@ -6,7 +6,7 @@ export default function UserDashboard() {
     <div className="flex">
       <Sidebar />
       <div className="ml-64 p-4 w-full">
-        USER DASHBOARD
+   
         <Outlet></Outlet>
       </div>
     </div>

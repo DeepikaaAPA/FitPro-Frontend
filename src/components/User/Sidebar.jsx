@@ -5,6 +5,7 @@ import {
   faEnvelope,
   faUserTie,
   faBell,
+  faBellSlash,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
@@ -18,14 +19,14 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="p-4 hover:bg-white hover:text-blue-900">
-          <Link to="/admin/applications" className="flex items-center">
-            <FontAwesomeIcon icon={faUserTie} className="mr-2" />
+          <Link to="upcoming" className="flex items-center">
+            <FontAwesomeIcon icon={faBell} className="mr-2" />
             Upcoming Classes
           </Link>
         </li>
         <li className="p-4 hover:bg-white hover:text-blue-900">
           <Link to="/notifications" className="flex items-center">
-            <FontAwesomeIcon icon={faBell} className="mr-2" />
+            <FontAwesomeIcon icon={faBellSlash} className="mr-2" />
            Booking History
           </Link>
         </li>
