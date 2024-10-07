@@ -6,6 +6,9 @@ import {
   faUserTie,
   faBell,
   faBellSlash,
+  faComments,
+  faHistory,
+  faPerson,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
@@ -13,8 +16,8 @@ const Sidebar = () => {
     <nav className="bg-gray-900 text-white fixed h-full w-64 flex flex-col">
       <ul className="flex-grow">
         <li className="p-4 hover:bg-white hover:text-blue-900">
-          <Link to="/admin/enquiries" className="flex items-center">
-            <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
+          <Link to="" className="flex items-center">
+            <FontAwesomeIcon icon={faPerson} className="mr-2" />
             User Profile
           </Link>
         </li>
@@ -25,23 +28,18 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="p-4 hover:bg-white hover:text-blue-900">
-          <Link to="/notifications" className="flex items-center">
-            <FontAwesomeIcon icon={faBellSlash} className="mr-2" />
-           Booking History
+          <Link to="review" className="flex items-center">
+            <FontAwesomeIcon icon={faComments} className="mr-2" />
+            Provide Feedback
           </Link>
         </li>
         <li className="p-4 hover:bg-white hover:text-blue-900">
-          <Link to="/notifications" className="flex items-center">
-            <FontAwesomeIcon icon={faBell} className="mr-2" />
-            View Schedule
+          <Link to="history" className="flex items-center">
+            <FontAwesomeIcon icon={faHistory} className="mr-2" />
+            View History
           </Link>
         </li>
-        <li className="p-4 hover:bg-white hover:text-blue-900">
-          <Link to="/notifications" className="flex items-center">
-            <FontAwesomeIcon icon={faBell} className="mr-2" />
-           Trainer Profile
-          </Link>
-        </li>
+   
       </ul>
     </nav>
   );

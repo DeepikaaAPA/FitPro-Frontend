@@ -19,6 +19,7 @@ import UserProfile from "./components/User/UserProfile";
 import TrainerProfile from "./components/Trainer/TrainerProfile";
 import TrainerBookings from "./components/Trainer/TrainerBookings";
 import TrainerAccount from "./components/Trainer/TrainerAccount";
+import Review from "./components/User/Review";
 import Upcoming from "./components/User/Upcoming";
 import Browse from "./Pages/Browse";
 import Cart from "./components/User/Cart";
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
           {
             path: "upcoming",
             element: <Upcoming />,
+          },
+          {
+            path: "review",
+            element: <Review />,
           },
           // {
           //   path: "history",

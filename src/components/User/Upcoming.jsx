@@ -49,7 +49,7 @@ function Upcoming() {
       <div className="overflow-x-auto flex justify-center">
         <table className=" m-5 bg-white border border-gray-200">
           <thead>
-            <tr className="bg-green-200">
+            <tr className="bg-green-200 text-blue-400">
               <th className="py-2 px-4 border-b">No.</th>
               <th className="py-2 px-4 border-b">Trainer</th>
 
@@ -63,7 +63,7 @@ function Upcoming() {
             {bookings.map((booking, index) => (
               <tr
                 key={index}
-                className={index % 2 === 0 ? "bg-blue-100" : "bg-green-100"}
+                className={index % 2 === 0 ? "bg-blue-50" : "bg-green-50"}
               >
                 <td className="py-2 px-4 border-b">{index + 1}</td>
                 <td className="py-2 px-4 border-b">
@@ -81,7 +81,7 @@ function Upcoming() {
                   {!actions[booking._id] ? (
                     <button
                       onClick={() => handleRemove(booking._id)}
-                      className=" bg-red-500  text-white p-3"
+                      className=" bg-red-500 text-sm  rounded text-white p-2"
                     >
                       {" "}
                       Cancel{" "}
@@ -90,7 +90,7 @@ function Upcoming() {
                     <span className="py-2 text-gray-500">
                       {`${actions[booking._id]}   -  `}
                       <button
-                        className=" rounded bg-green-400 p-3 text-gray-600"
+                        className=" rounded bg-green-300 p-3 text-gray-600"
                         onClick={() => handleReschedule(booking.trainerId)}
                       >
                         Reschedule
