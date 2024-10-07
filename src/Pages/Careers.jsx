@@ -50,7 +50,8 @@ export default function Careers() {
           committed to helping clients achieve their fitness goals. Apply now to
           be a part of our dynamic team!
         </p>
-        {user?.role !== "trainer" && (
+        {!user && <p>Create an account to apply as a trainer. <br></br> Already have an account ? Login to apply for trainer.</p>}
+        {user && user?.role !== "trainer" && (
           <div className="flex justify-center mt-4">
             <button
               onClick={handleApplyNow}
