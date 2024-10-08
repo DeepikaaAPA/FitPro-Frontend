@@ -36,7 +36,9 @@ const ViewEnquiries = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 ">
+      <h2 className="text-center">  <i className="fa fa-envelope text-blue-400  text-2xl"> View Enquiries </i>{" "} </h2>
+     
       <ToastContainer></ToastContainer>
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-200">

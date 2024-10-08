@@ -6,7 +6,7 @@ const stars = [1, 2, 3, 4, 5];
 const TrainerCard = ({ trainer }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg hover:shadow bg-blue-50 m-3 w-64 ">
-      <img className="" src={trainer.profilePic} alt={trainer.name} />
+      <img className="" src="" alt={trainer.name} />
       <div className="px-6 py-2 text-center">
         <div className=" capitalize font-bold text-xl pb-2 text-blue-400 border-b ">
           {trainer.firstname + " " + trainer.lastname}
@@ -24,11 +24,11 @@ const TrainerCard = ({ trainer }) => {
               {trainer.avgRating.toFixed(1)}{" "}
             </span>
           )}
-          {stars.map((number) =>
+          {stars.map((number, index) =>
             number <= trainer.avgRating ? (
-              <i>{blackstar}</i>
+              <i key="index">{blackstar}</i>
             ) : (
-              <i>{whitestar}</i>
+              <i key="index">{whitestar}</i>
             )
           )}
         </p>

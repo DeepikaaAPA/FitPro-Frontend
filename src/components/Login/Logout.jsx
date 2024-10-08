@@ -9,23 +9,25 @@ const Logout = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // perform the logout
-    instance
-      .post("/auth/logout")
-      .then((response) => {
-        dispatch(logout());
-        // redirect to the login page
-        setTimeout(() => {
-          navigate("/");
-        }, 500);
-      })
-      .catch((error) => {
-        alert(error?.response?.data?.message);
+    // instance
+    //   .post("/auth/logout")
+    //   .then((response) => {
+    //     dispatch(logout());
+    //     // redirect to the login page
+    //     setTimeout(() => {
+    //       navigate("/");
+    //     }, 500);
+    //   })
+    //   .catch((error) => {
+    //     alert(error?.response?.data?.message);
 
-        // redirect to the login page
-        setTimeout(() => {
-          navigate("/login");
-        }, 500);
-      });
+    //     // redirect to the login page
+    //     setTimeout(() => {
+    //       navigate("/login");
+    //     }, 500);
+    //   });
+    localStorage.setItem("token", "");
+    navigate("/login");
   }, []);
 
   return <div>Logging out...</div>;

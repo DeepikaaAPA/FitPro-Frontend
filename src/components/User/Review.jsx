@@ -7,7 +7,7 @@ import { Rating } from "@material-tailwind/react";
 
 import ReviewCard from "./ReviewCard";
 
-function Past() {
+function Review() {
   const [data, setData] = useState([]);
   const [initialData, setInitialData] = useState([]);
   useEffect(() => {
@@ -16,7 +16,7 @@ function Past() {
         const response = await instance.get("/user/getTrainersReviews");
         setData(response.data);
         setInitialData(response.data);
-        console.log(response.data);
+       // console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -31,7 +31,7 @@ function Past() {
         i === index ? { ...item, review: e.target.value } : item
       )
     );
-    console.log(data);
+   // console.log(data);
   };
 
   const handleSave = async (index) => {
@@ -60,22 +60,24 @@ function Past() {
         i === index ? { ...item, rating: e.target.value } : item
       )
     );
-    console.log(data);
+   // console.log(data);
   };
   const whitestar = "☆";
   const blackstar = "★";
   const stars = [1, 2, 3, 4, 5];
   return (
     <div>
-      <h4 className="text-blue-400 text-center text-4xl "><i className="fa fa-comments"> Provide Feedback</i> </h4>
+      <h4 className="text-blue-400 text-center text-4xl ">
+        <i className="fa fa-comments"> Provide Feedback </i>{" "}
+      </h4>
       <ToastContainer></ToastContainer>
       <div className="flex flex-wrap ">
         {!data.length ? (
           <p> ⚠️ You are yet to attend classes.</p>
         ) : (
           data.map((trainer, index) => (
-            <div className=" border m-3 ">
-              <ReviewCard key={index} trainer={trainer.trainer} />
+            <div key={index} className=" border  md:m-3 ">
+              <ReviewCard key={trainer._id} trainer={trainer.trainer} />
 
               <div className="p-2 pb-2 bg-yellow-100  text-sm flex flex-col ">
                 <span className=" text-blue-400 text-sm font-bold fa-solid fa-star">
@@ -86,9 +88,9 @@ function Past() {
                   <p className="text-center text-yellow-500 ">
                     {stars.map((number) =>
                       number <= trainer.rating ? (
-                        <i>{blackstar}</i>
+                        <i key={number}>{blackstar}</i>
                       ) : (
-                        <i>{whitestar}</i>
+                        <i key={number}>{whitestar}</i>
                       )
                     )}
 
@@ -139,4 +141,4 @@ function Past() {
   );
 }
 
-export default Past;
+export default Review;

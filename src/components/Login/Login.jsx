@@ -7,6 +7,8 @@ import instance from "../../services/instance";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../features/userSlice";
+import { baseURL } from "../../config/config";
+import axios from "axios";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,15 +17,18 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await instance.post("/auth/login", { email, password });
+      const response = await axios.post(baseURL + "/auth/login", {
+        email,
+        password,
+      });
       const { userId, firstname, lastname, role } = response.data;
 
-      console.log({ userId, firstname, lastname, role, email });
+      localStorage.setItem("token", response.data.token);
       dispatch(login({ userId, firstname, lastname, role, email }));
       navigate("/");
     } catch (error) {
       console.log(error);
-      toast(error?.response?.data?.message || "An error occured.");
+      toast(" ❗ " + error?.response?.data?.message || "An error occured.");
     }
   };
   return (

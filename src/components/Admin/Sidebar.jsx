@@ -23,12 +23,12 @@ const Sidebar = () => {
             Trainer Applications
           </Link>
         </li>
-        <li className="p-4 hover:bg-white hover:text-blue-900">
+        {/* <li className="p-4 hover:bg-white hover:text-blue-900">
           <Link to="/notifications" className="flex items-center">
             <FontAwesomeIcon icon={faBell} className="mr-2" />
             Send Notifications
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

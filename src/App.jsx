@@ -23,6 +23,7 @@ import Review from "./components/User/Review";
 import Upcoming from "./components/User/Upcoming";
 import Browse from "./Pages/Browse";
 import Cart from "./components/User/Cart";
+import BookingHistory from "./components/User/BookingHistory";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -79,10 +80,10 @@ const router = createBrowserRouter([
             path: "review",
             element: <Review />,
           },
-          // {
-          //   path: "history",
-          //   element: <History />,
-          // },
+          {
+            path: "history",
+            element: <BookingHistory />,
+          },
         ],
       },
       {
