@@ -62,9 +62,12 @@ function Past() {
     );
     console.log(data);
   };
+  const whitestar = "☆";
+  const blackstar = "★";
+  const stars = [1, 2, 3, 4, 5];
   return (
     <div>
-      <h4 className="text-blue-400 text-center text-4xl "> Provide Feedback</h4>
+      <h4 className="text-blue-400 text-center text-4xl "><i className="fa fa-comments"> Provide Feedback</i> </h4>
       <ToastContainer></ToastContainer>
       <div className="flex flex-wrap ">
         {!data.length ? (
@@ -75,12 +78,38 @@ function Past() {
               <ReviewCard key={index} trainer={trainer.trainer} />
 
               <div className="p-2 pb-2 bg-yellow-100  text-sm flex flex-col ">
-                <p className="text-lg  text-gray-500"> Write a review </p>
-                <input
-                  type="number"
-                  value={trainer.rating}
-                  onChange={(e) => handleRating(e, index)}
-                />
+                <span className=" text-blue-400 text-sm font-bold fa-solid fa-star">
+                  {" "}
+                  Rate
+                </span>
+                <div className="p-2">
+                  <p className="text-center text-yellow-500 ">
+                    {stars.map((number) =>
+                      number <= trainer.rating ? (
+                        <i>{blackstar}</i>
+                      ) : (
+                        <i>{whitestar}</i>
+                      )
+                    )}
+
+                    <select
+                      className="bg-green-50 px-2 mx-2 text-gray-500 text-xs"
+                      value={trainer.rating}
+                      onChange={(e) => handleRating(e, index)}
+                    >
+                      <option value="">--Select--</option>
+                      <option value="1">Poor</option>
+                      <option value="2">Average</option>
+                      <option value="3">Good</option>
+                      <option value="4">Very Good</option>
+                      <option value="5">Excellent</option>
+                    </select>
+                  </p>
+                </div>
+                <span className=" text-blue-400 text-sm font-bold fa-solid fa-pen">
+                  {" "}
+                  Review
+                </span>
                 <textarea
                   className="text-gray-600 p-3 my-2"
                   name="review"

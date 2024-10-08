@@ -12,7 +12,6 @@ const Logout = () => {
     instance
       .post("/auth/logout")
       .then((response) => {
-        alert(response.data.message);
         dispatch(logout());
         // redirect to the login page
         setTimeout(() => {

@@ -3,13 +3,11 @@ import { useNavigate } from "react-router-dom";
 import ApplicationForm from "../components/Trainer/ApplicationForm";
 import { useSelector } from "react-redux";
 
-
 export default function Careers() {
-
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
- 
+
   const handleApplyNow = async (e) => {
     try {
       setShowForm(true);
@@ -21,7 +19,7 @@ export default function Careers() {
 
   return (
     <>
-      <div className="bg-black p-6  shadow-md md:px-32">
+      <div className="bg-black p-6  h-full shadow-md md:px-32">
         <h2 className="text-2xl font-bold mb-4 text-blue-100">
           Fitness Trainer Application Rules
         </h2>
@@ -50,7 +48,12 @@ export default function Careers() {
           committed to helping clients achieve their fitness goals. Apply now to
           be a part of our dynamic team!
         </p>
-        {!user && <p  className="mb-2 text-green-200" >Create an account to apply as a trainer. <br></br> Already have an account ? Login to apply for trainer.</p>}
+        {!user && (
+          <p className="mb-2 text-center italic text-green-200">
+            Create an account to apply as a trainer. <br></br> Already have an
+            account ? Login to apply for trainer.
+          </p>
+        )}
         {user && user?.role !== "trainer" && (
           <div className="flex justify-center mt-4">
             <button
@@ -65,5 +68,5 @@ export default function Careers() {
         {showForm && <ApplicationForm user={user} />}
       </div>
     </>
-  );
+  )
 }

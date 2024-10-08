@@ -13,33 +13,35 @@ import {
 
 const Sidebar = () => {
   return (
-    <nav className="bg-gray-900 text-white fixed h-full w-64 flex flex-col">
+    <nav className="bg-gray-900 text-white fixed h-full w-20 md:w-64  flex flex-col">
       <ul className="flex-grow">
-        <li className="p-4 hover:bg-white hover:text-blue-900">
-          <Link to="" className="flex items-center">
-            <FontAwesomeIcon icon={faPerson} className="mr-2" />
-            User Profile
+      <li className="p-4 hover:bg-green-50 hover:text-blue-900">
+         
+          <Link to="">
+          <FontAwesomeIcon icon={faPerson} className="mr-2 w-10" />
+            <span className="collapse md:visible  ">
+              User Profile
+            </span>
           </Link>
         </li>
-        <li className="p-4 hover:bg-white hover:text-blue-900">
+        <li className="p-4 hover:bg-green-50 hover:text-blue-900">
           <Link to="upcoming" className="flex items-center">
-            <FontAwesomeIcon icon={faBell} className="mr-2" />
-            Upcoming Classes
+            <FontAwesomeIcon icon={faBell} className="mr-2 w-10" />
+            <span className="collapse md:visible ">Upcoming Classes</span>
           </Link>
         </li>
-        <li className="p-4 hover:bg-white hover:text-blue-900">
+        <li className="p-4 hover:bg-green-50 hover:text-blue-900">
           <Link to="review" className="flex items-center">
-            <FontAwesomeIcon icon={faComments} className="mr-2" />
-            Provide Feedback
+            <FontAwesomeIcon icon={faComments} className="mr-2 w-10" />
+            <span className="collapse md:visible "> Provide Feedback</span>
           </Link>
         </li>
-        <li className="p-4 hover:bg-white hover:text-blue-900">
+        <li className="p-4 hover:bg-green-50 hover:text-blue-900">
           <Link to="history" className="flex items-center">
-            <FontAwesomeIcon icon={faHistory} className="mr-2" />
-            View History
+            <FontAwesomeIcon icon={faHistory} className="mr-2 w-10" />
+            <span className="collapse md:visible "> View History</span>
           </Link>
         </li>
-   
       </ul>
     </nav>
   );

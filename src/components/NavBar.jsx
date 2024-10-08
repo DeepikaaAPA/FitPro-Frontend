@@ -62,7 +62,7 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="flex items-center border mr-2 ">
+              <li className="flex items-center  mr-2 ">
                 <Link
                   to={"/browse"}
                   className={
@@ -73,8 +73,8 @@ export default function Navbar(props) {
                   }
                 >
                   <i className=" fa fa-search text-lg leading-lg " />
-                  <span className=" button rounded  inline-block ml-2">
-                    Search
+                  <span className="   inline-block ml-2">
+                    Browse classes
                   </span>
                 </Link>
               </li>

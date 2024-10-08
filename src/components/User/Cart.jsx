@@ -15,7 +15,7 @@ function Cart() {
   };
   const handleCheckout=async()=>{
    const response=await instance.post("/trainer/book",{cart})
-   toast(" Classes booked successfully. ")
+   toast(" ✔ Payment success. Classes booked successfully. ")
    dispatch(resetCart())
   }
 
