@@ -167,7 +167,7 @@ const TrainerAccount = () => {
     <div className="p-4  text-blue-900 mx-3  bg-white rounded-lg shadow-md">
       <ToastContainer></ToastContainer>
       <h2 className="text-2xl text-blue-400 font-bold mb-4">
-        Trainer Account{" "}
+        Trainer Account Settings{" "}
       </h2>
 
       <div className="mb-4  ">

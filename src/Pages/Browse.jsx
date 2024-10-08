@@ -43,6 +43,12 @@ export default function Browse() {
     <div className="App">
       <FilterOptions filters={filters} setFilters={setFilters} />
       <div className="flex flex-wrap">
+        {!trainers.length && (
+          <div className="text-center text-xl text-blue-400">
+            {" "}
+            No results found.
+          </div>
+        )}
         {trainers.map((trainer, index) => (
           <TrainerCard key={index} trainer={trainer} />
         ))}

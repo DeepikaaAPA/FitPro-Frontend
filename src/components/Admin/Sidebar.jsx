@@ -12,13 +12,13 @@ const Sidebar = () => {
     <nav className="bg-gray-900 text-white fixed h-full w-64 flex flex-col">
       <ul className="flex-grow">
         <li className="p-4 hover:bg-white hover:text-blue-900">
-          <Link to="/admin/enquiries" className="flex items-center">
+          <Link to="" className="flex items-center">
             <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
             View Enquiries
           </Link>
         </li>
         <li className="p-4 hover:bg-white hover:text-blue-900">
-          <Link to="/admin/applications" className="flex items-center">
+          <Link to="applications" className="flex items-center">
             <FontAwesomeIcon icon={faUserTie} className="mr-2" />
             Trainer Applications
           </Link>

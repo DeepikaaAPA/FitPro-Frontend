@@ -106,8 +106,10 @@ export default function LandingPage() {
                     </div>
                     <h6 className="text-xl font-semibold">Qualified Mentors</h6>
                     <p className="mt-2 mb-4 text-gray-600">
-                      Write a few lines about each one. A paragraph describing a
-                      feature will be enough. Keep you user engaged!
+                      We pride ourselves on having a team of highly qualified
+                      and experienced mentors. Each of our trainers is certified
+                      and brings a wealth of knowledge in fitness, nutrition,
+                      and wellness.
                     </p>
                   </div>
                 </div>

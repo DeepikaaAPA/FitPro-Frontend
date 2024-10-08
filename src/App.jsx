@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         element: <AdminDashboard />,
         children: [
           {
-            path: "enquiries",
+            path: "",
             element: <ViewEnquiries />,
           },
           {
@@ -69,11 +69,7 @@ const router = createBrowserRouter([
         element: <UserDashboard />,
         children: [
           {
-            path: "profile",
-            element: <UserProfile />,
-          },
-          {
-            path: "upcoming",
+            path: "",
             element: <Upcoming />,
           },
           {

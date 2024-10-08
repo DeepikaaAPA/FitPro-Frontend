@@ -69,13 +69,11 @@ export default function Navbar(props) {
                     (props.transparent
                       ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                       : "text-white-800 hover:text-white -600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold hover:text-lg"
                   }
                 >
                   <i className=" fa fa-search text-lg leading-lg " />
-                  <span className="   inline-block ml-2">
-                    Browse classes
-                  </span>
+                  <span className="   inline-block ml-2">Browse classes</span>
                 </Link>
               </li>
               <li className="flex items-center">
@@ -85,30 +83,30 @@ export default function Navbar(props) {
                     (props.transparent
                       ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                       : "text-white-800 hover:text-white -600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold hover:text-lg"
                   }
                 >
                   <i className=" fa fa-home text-lg leading-lg " />
-                  <span className="lg:hidden inline-block ml-2">Home</span>
+                  <span className=" inline-block ml-2">Home</span>
                 </Link>
               </li>
               {loggedInUser && (
                 <li className="flex items-center">
                   <Link
-                    to={"/user"}
+                    to={loggedInUser.role !== "admin" ? "/user" : "/admin"}
                     className={
                       (props.transparent
                         ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                         : "text-white-800 hover:text-gray-600") +
-                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold hover:text-lg"
                     }
                   >
                     <i
                       className={
                         (props.transparent
-                          ? "lg:text-gray-300 text-gray-500"
-                          : "text-white-500") +
-                        " fa fa-user text-lg leading-lg "
+                          ? "lg:text-gray-300 text-gray-500 "
+                          : "text-white-500 hover:text-lg") +
+                        " fa fa-person text-lg leading-lg  hover:text-lg"
                       }
                     />
                     <span className=" inline-block ml-2">
@@ -119,20 +117,7 @@ export default function Navbar(props) {
                   </Link>
                 </li>
               )}
-              <li className="flex items-center  mr-2 ">
-                <Link
-                  to={"/cart"}
-                  className={
-                    (props.transparent
-                      ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                      : "text-white-800 hover:text-white -600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
-                  }
-                >
-                  <i className=" fa fa-shopping-cart text-lg leading-lg " />
-                  <span className="   inline-block ml-2">Cart</span>
-                </Link>
-              </li>
+
               {loggedInUser.role === "trainer" && (
                 <li className="flex items-center">
                   <Link
@@ -140,8 +125,8 @@ export default function Navbar(props) {
                     className={
                       (props.transparent
                         ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                        : "text-white-800 hover:text-gray-600") +
-                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        : "text-white-800 hover:text-lg") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold hover:text-lg"
                     }
                   >
                     <i
@@ -149,7 +134,7 @@ export default function Navbar(props) {
                         (props.transparent
                           ? "lg:text-gray-300 text-gray-500"
                           : "text-white-500") +
-                        " fa fa-user text-lg leading-lg "
+                        " fa fa-user-tie text-lg leading-lg "
                       }
                     />
                     <span className=" inline-block ml-2">Trainer Account</span>
@@ -163,8 +148,8 @@ export default function Navbar(props) {
                     className={
                       (props.transparent
                         ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                        : "text-white-800 hover:text-gray-600") +
-                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        : "text-white-800 ") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold hover:text-lg"
                     }
                   >
                     <i
@@ -185,7 +170,7 @@ export default function Navbar(props) {
                     (props.transparent
                       ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
                       : "text-white-800 hover:text-gray-600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold hover:text-lg"
                   }
                   to="/careers"
                 >
@@ -198,6 +183,20 @@ export default function Navbar(props) {
                     }
                   />
                   <span className=" inline-block ml-2">Careers</span>
+                </Link>
+              </li>
+              <li className="flex items-center  mr-2 ">
+                <Link
+                  to={"/cart"}
+                  className={
+                    (props.transparent
+                      ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                      : "text-white-800 hover:text-white -600") +
+                    " px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold hover:text-lg"
+                  }
+                >
+                  <i className=" fa fa-shopping-cart text-lg leading-lg " />
+                  <span className="   inline-block ml-2">Cart</span>
                 </Link>
               </li>
               {loggedInUser && (

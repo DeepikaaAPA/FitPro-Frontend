@@ -15,17 +15,8 @@ const Sidebar = () => {
   return (
     <nav className="bg-gray-900 text-white fixed h-full w-20 md:w-64  flex flex-col">
       <ul className="flex-grow">
-      <li className="p-4 hover:bg-green-50 hover:text-blue-900">
-         
-          <Link to="">
-          <FontAwesomeIcon icon={faPerson} className="mr-2 w-10" />
-            <span className="collapse md:visible  ">
-              User Profile
-            </span>
-          </Link>
-        </li>
         <li className="p-4 hover:bg-green-50 hover:text-blue-900">
-          <Link to="upcoming" className="flex items-center">
+          <Link to="" className="flex items-center">
             <FontAwesomeIcon icon={faBell} className="mr-2 w-10" />
             <span className="collapse md:visible ">Upcoming Classes</span>
           </Link>
