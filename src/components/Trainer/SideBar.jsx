@@ -7,6 +7,7 @@ import {
   faBell,
   faCog,
   faHistory,
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
@@ -26,9 +27,9 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="p-4 hover:bg-green-50 hover:text-blue-900">
-          <Link to="/notifications" className="flex items-center">
-            <FontAwesomeIcon icon={faHistory} className="mr-2 w-10" />
-            <span className="collapse md:visible  ">Booking History </span>
+          <Link to="bookings" className="flex items-center">
+            <FontAwesomeIcon icon={faBook} className="mr-2 w-10" />
+            <span className="collapse md:visible  "> View bookings </span>
           </Link>
         </li>
       </ul>

@@ -24,6 +24,7 @@ import Upcoming from "./components/User/Upcoming";
 import Browse from "./Pages/Browse";
 import Cart from "./components/User/Cart";
 import BookingHistory from "./components/User/BookingHistory";
+import Bookings from "./components/Trainer/Bookings";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
           {
             path: "profile",
             element: <TrainerProfile />,
+          },
+          {
+            path: "bookings",
+            element: <Bookings />,
           },
         ],
       },

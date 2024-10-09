@@ -1,11 +1,12 @@
 import { useState } from "react";
 import instance from "../../services/instance";
-import { format } from "date-fns";
+
 import { Calendar } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../features/cartSlice";
+import { toast, ToastContainer } from "react-toastify";
 function Book({ trainerId, user, trainer }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -47,8 +48,18 @@ function Book({ trainerId, user, trainer }) {
         user,
         selectedDate,
         selectedSlots,
-        trainer
+        trainer,
       })
+    );
+    toast(
+      "Added to cart :" +
+        selectedSlots.join(" ,") +
+        " on " +
+        selectedDate +
+        " Trainer :" +
+        trainer.firstname +
+        " " +
+        trainer.lastname
     );
     setSelectedSlots([]);
     setIsOpen(false);
@@ -72,9 +83,10 @@ function Book({ trainerId, user, trainer }) {
 
   return (
     <div>
-      <button onClick={handleBook} className="p-2 bg-blue-500 text-white">
+      <button onClick={handleBook} className="p-2 bg-blue-500  rounded text-white">
         Book
       </button>
+      <ToastContainer></ToastContainer>
       {isOpen && (
         <div className="fixed p-5  inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white py-5 rounded-md shadow-md ">
@@ -125,6 +137,7 @@ function Book({ trainerId, user, trainer }) {
             <button
               onClick={handleAddToCart}
               className=" rounded p-2 bg-blue-500 text-white mt-4"
+              disbled={selectedSlots.length ? false : true}
             >
               Add to Cart
             </button>
@@ -140,14 +153,5 @@ function Book({ trainerId, user, trainer }) {
     </div>
   );
 }
-
-// function Calendar({ onDateClick, disabledDates }) {
-//   // Calendar component logic here
-//   return (
-//     <div>
-//       {/* Render calendar dates here, call onDateClick with the selected date */}
-//     </div>
-//   );
-// }
 
 export default Book;

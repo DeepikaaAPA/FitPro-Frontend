@@ -4,6 +4,7 @@ import instance from "../../services/instance";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
+import ImageUploader from "./ImageUploader";
 const TrainerAccount = () => {
   const { user } = useSelector((state) => state.user);
   const trainerId = user?.userId;
@@ -30,7 +31,9 @@ const TrainerAccount = () => {
     instance
       .get(`/trainer/get/${trainerId}`)
       .then((response) => {
-        setFormData({ ...formData, ...response.data, images: [] });
+        const images = [...response.data.images];
+        images.fill("", response.data.length, 10);
+        setFormData({ ...formData, ...response.data, images });
         setInitialData(response.data);
       })
       .catch((error) => {
@@ -317,6 +320,7 @@ const TrainerAccount = () => {
           className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
+
       <div className="mb-4">
         <label className="block mb-1">Images</label>
         {formData.images?.map((image, index) =>
@@ -340,12 +344,7 @@ const TrainerAccount = () => {
           )
         )}
         {formData.images.length < 10 && (
-          <input
-            type="file"
-            name="images"
-            onChange={handleImageUpload}
-            className="text-sm w-full border p-2 rounded text-gray-500"
-          />
+          <ImageUploader trainerId={trainerId}></ImageUploader>
         )}
       </div>
       <div className="mb-4">

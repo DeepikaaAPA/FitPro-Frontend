@@ -37,6 +37,9 @@ export default function TrainerProfile() {
         console.error("There was an error fetching the trainer data!", error);
       });
   }, [trainerId]);
+  const whitestar = "☆";
+  const blackstar = "★";
+  const stars = [1, 2, 3, 4, 5];
   return (
     <>
       <main className="profile-page">
@@ -109,7 +112,26 @@ export default function TrainerProfile() {
                       </div>
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blue-400">
-                          10
+                          <p className="text-center  text-yellow-500 ">
+                            {!data.avgRating ? (
+                              <span className="text-xs text-blue-400">
+                                {" "}
+                                No Ratings yet{" "}
+                              </span>
+                            ) : (
+                              <span className="text-blue-400">
+                                {" "}
+                                {data.avgRating.toFixed(1)}{" "}
+                              </span>
+                            )}
+                            {stars.map((number, index) =>
+                              number <= data.avgRating ? (
+                                <i key="index">{blackstar}</i>
+                              ) : (
+                                <i key="index">{whitestar}</i>
+                              )
+                            )}
+                          </p>
                         </span>
                         <span className="text-sm text-gray-500">Rating</span>
                       </div>
