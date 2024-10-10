@@ -25,6 +25,7 @@ import Browse from "./Pages/Browse";
 import Cart from "./components/User/Cart";
 import BookingHistory from "./components/User/BookingHistory";
 import Bookings from "./components/Trainer/Bookings";
+import Reviews from "./components/Trainer/Reviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
           {
             path: "bookings",
             element: <Bookings />,
+          },
+          {
+            path: "reviews",
+            element: <Reviews />,
           },
         ],
       },

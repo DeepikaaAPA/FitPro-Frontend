@@ -8,6 +8,7 @@ import {
   faCog,
   faHistory,
   faBook,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
@@ -30,6 +31,12 @@ const Sidebar = () => {
           <Link to="bookings" className="flex items-center">
             <FontAwesomeIcon icon={faBook} className="mr-2 w-10" />
             <span className="collapse md:visible  "> View bookings </span>
+          </Link>
+        </li>
+        <li className="p-4 hover:bg-green-50 hover:text-blue-900">
+          <Link to="reviews" className="flex items-center">
+            <FontAwesomeIcon icon={faComments} className="mr-2 w-10" />
+            <span className="collapse md:visible  "> View Reviews </span>
           </Link>
         </li>
       </ul>
