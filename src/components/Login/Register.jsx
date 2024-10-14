@@ -126,12 +126,12 @@ export default function Register() {
                       </div>
                     </form>
                     <div className="flex flex-wrap mt-2  bg-white-900 ">
-                      <div className="w-1/2">
+                      {/* <div className="w-1/2">
                         <Link href="forgot-password" className="text-blue-800">
                           <small>Forgot password?</small>
                         </Link>
-                      </div>
-                      <div className="w-1/2 text-right">
+                      </div> */}
+                      <div className="">
                         <Link to="/login" className="text-blue-800">
                           <small>Login</small>
                         </Link>

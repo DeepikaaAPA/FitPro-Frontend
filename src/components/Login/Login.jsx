@@ -101,7 +101,7 @@ export default function Login() {
                       </div>
                     </form>
                     <div className="flex flex-wrap mt-2  bg-white-900 ">
-                      <div className="w-1/2">
+                      {/* <div className="w-1/2">
                         <a
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
@@ -109,8 +109,8 @@ export default function Login() {
                         >
                           <small>Forgot password?</small>
                         </a>
-                      </div>
-                      <div className="w-1/2 text-right">
+                      </div> */}
+                      <div className="">
                         <Link to="/register" className="text-blue-800">
                           <small>Create new account</small>
                         </Link>
