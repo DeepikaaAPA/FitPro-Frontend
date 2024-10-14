@@ -1,10 +1,12 @@
-// src/components/TrainerAccount.js
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import instance from "../../services/instance";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import ImageUploader from "./ImageUploader";
+const cloudinary_upload_url =
+  "https://api.cloudinary.com/v1_1/dzmpy0ilo/upload";
 const TrainerAccount = () => {
   const { user } = useSelector((state) => state.user);
   const trainerId = user?.userId;
@@ -104,34 +106,38 @@ const TrainerAccount = () => {
       qualifications: formData.qualifications.filter((_, i) => i !== index),
     });
   };
+  const handleDpSave = async () => {
+    const data = new FormData();
 
+    data.append("file", formData.profilePic);
+    data.append("upload_preset", "pcotrgbw");
+
+    console.log(data);
+    try {
+      const response = await axios.post(cloudinary_upload_url, data);
+      console.log(response.data);
+      const url = response.data.secure_url;
+      await instance.post("/trainer/dp/updateDp", { url });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleSave = async () => {
-    const dpData = new FormData();
-    dpData.append("profilePic", formData.profilePic);
-    try {
-      const res = await instance.post(`/trainer/dp/${trainerId}`, dpData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    } catch (err) {
-      alert("error uploading profile picture");
-      console.log(err);
-    }
+    await handleDpSave();
     const imgData = new FormData();
-    formData.images.forEach((image, index) => {
-      imgData.append(`images`, image);
-    });
-    try {
-      const res = await instance.post(`/trainer/images/${trainerId}`, imgData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    } catch (err) {
-      alert("error uploading images");
-      console.log(err);
-    }
+    // formData.images.forEach((image, index) => {
+    //   imgData.append(`images`, image);
+    // });
+    // try {
+    //   const res = await instance.post(`/trainer/images/${trainerId}`, imgData, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //   });
+    // } catch (err) {
+    //   alert("error uploading images");
+    //   console.log(err);
+    // }
     const videoData = new FormData();
 
     videoData.append(`video`, formData.video);
@@ -147,7 +153,7 @@ const TrainerAccount = () => {
         }
       );
     } catch (err) {
-      alert("error uploading video");
+      toast("error uploading video");
       console.log(err);
     }
     //console.log(formData);
@@ -218,9 +224,9 @@ const TrainerAccount = () => {
         <input
           type="file"
           name="profilePic"
-          onChange={(e) =>
-            setFormData({ ...formData, profilePic: e.target.files[0] })
-          }
+          onChange={(e) => {
+            setFormData({ ...formData, profilePic: e.target.files[0] });
+          }}
           className="text-sm w-full border p-2 rounded text-gray-500"
         />
       </div>
@@ -321,7 +327,7 @@ const TrainerAccount = () => {
         />
       </div>
 
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label className="block mb-1">Images</label>
         {formData.images?.map((image, index) =>
           image ? (
@@ -346,18 +352,8 @@ const TrainerAccount = () => {
         {formData.images.length < 10 && (
           <ImageUploader trainerId={trainerId}></ImageUploader>
         )}
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1">Introductory Video</label>
-        <input
-          type="file"
-          name="video"
-          onChange={(e) =>
-            setFormData({ ...formData, video: e.target.files[0] })
-          }
-          className="text-sm w-full border p-2 rounded text-gray-500"
-        />
-      </div>
+      </div> */}
+
       <div className="mb-4">
         <label className="block mb-1">Price</label>
         <input

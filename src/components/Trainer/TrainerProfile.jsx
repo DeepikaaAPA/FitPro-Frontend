@@ -85,7 +85,8 @@ export default function TrainerProfile() {
                     <div className="relative">
                       <img
                         alt="..."
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                        src={data.profilePic}
+                        className="shadow-xl  rounded-full h-auto align-middle border border-gray-400 p-2 absolute -m-16 -ml-20 lg:-ml-16"
                         style={{ maxWidth: "150px" }}
                       />
                     </div>

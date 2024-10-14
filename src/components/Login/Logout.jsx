@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
-import instance from "../../services/instance";
+
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../features/userSlice";
+import { resetCart } from "../../features/cartSlice";
+
 const Logout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Logout = () => {
     //       navigate("/login");
     //     }, 500);
     //   });
+    dispatch(resetCart());
     localStorage.setItem("token", "");
     navigate("/login");
   }, []);

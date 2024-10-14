@@ -2,6 +2,7 @@ import React from "react";
 import LandingBackground from "../components/images/Landingbackground.jpg";
 import Footer from "../components/Footer";
 import Enquiryform from "../components/LandingPage/EnquiryForm";
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   return (
@@ -216,24 +217,22 @@ export default function LandingPage() {
                   <div className="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
                     <i className="fas fa-rocket text-xl"></i>
                   </div>
-                  <h3 className="text-3xl font-semibold">A growing company</h3>
+                  <h3 className="text-3xl font-semibold">
+                    A variety of disciplines
+                  </h3>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                    The extension comes with three pre-built pages to help you
-                    get started faster. You can change the text and images and
-                    you're good to go.
+                    Choose from a variety of specialized classes and mentors.
                   </p>
                   <ul className="list-none mt-6">
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="fas fa-fingerprint"></i>
+                            <i className="fa fa-person-running"></i>
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-gray-600">
-                            Carefully crafted components
-                          </h4>
+                          <h4 className="text-gray-600">Yoga</h4>
                         </div>
                       </div>
                     </li>
@@ -241,13 +240,11 @@ export default function LandingPage() {
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="fab fa-html5"></i>
+                            <i className="fa-solid fa-dumbbell"></i>
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-gray-600">
-                            Amazing page examples
-                          </h4>
+                          <h4 className="text-gray-600">Strength Training</h4>
                         </div>
                       </div>
                     </li>
@@ -259,7 +256,21 @@ export default function LandingPage() {
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-gray-600">Dynamic components</h4>
+                          <h4 className="text-gray-600">Pilates</h4>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="py-2">
+                      <div className="flex items-center">
+                        <div>
+                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
+                            <i className="fa fa-dots">...</i>
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="text-gray-600 underline">
+                            <Link to="/browse"> + more </Link>
+                          </h4>
                         </div>
                       </div>
                     </li>
@@ -471,11 +482,11 @@ export default function LandingPage() {
                   <i className="fas fa-medal text-xl"></i>
                 </div>
                 <h6 className="text-xl mt-5 font-semibold text-white">
-                  Excelent Services
+                  Excellent Services
                 </h6>
                 <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  We provide excellent services. Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit. Fugiat, dolorem.
                 </p>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
@@ -483,11 +494,11 @@ export default function LandingPage() {
                   <i className="fas fa-poll text-xl"></i>
                 </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                  Grow your market
+                  Meet your goals
                 </h5>
                 <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Neque laborum minus distinctio magni tempore illum?
                 </p>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
@@ -495,11 +506,11 @@ export default function LandingPage() {
                   <i className="fas fa-lightbulb text-xl"></i>
                 </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                  Launch time
+                  Great mentors
                 </h5>
                 <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Reprehenderit facere sit iste nesciunt tempora consectetur.
                 </p>
               </div>
             </div>
