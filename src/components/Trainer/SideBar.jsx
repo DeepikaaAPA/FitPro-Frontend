@@ -2,11 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faEnvelope,
   faUserTie,
-  faBell,
   faCog,
-  faHistory,
   faBook,
   faComments,
 } from "@fortawesome/free-solid-svg-icons";

@@ -15,9 +15,9 @@ import Register from "./components/Login/Register";
 import UserDashboard from "./Pages/UserDashboard";
 import TrainerDashboard from "./Pages/TrainerDashboard";
 import { tokenLoader } from "./loaders/paramsLoader";
-import UserProfile from "./components/User/UserProfile";
+
 import TrainerProfile from "./components/Trainer/TrainerProfile";
-import TrainerBookings from "./components/Trainer/TrainerBookings";
+
 import TrainerAccount from "./components/Trainer/TrainerAccount";
 import Review from "./components/User/Review";
 import Upcoming from "./components/User/Upcoming";

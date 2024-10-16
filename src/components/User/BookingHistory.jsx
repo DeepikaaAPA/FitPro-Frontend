@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import instance from "../../services/instance";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquare } from "@fortawesome/free-solid-svg-icons";
 
 function BookingHistory() {
   const [bookings, setBookings] = useState([]);
@@ -20,10 +22,23 @@ function BookingHistory() {
   }, []);
   const currentDate = new Date(new Date().toLocaleDateString());
   return (
-    <div className="container mx-auto py-4">
+    <div className="container mx-auto py-4 flex flex-col items-center ">
       <h2 className="text-2xl font-bold mb-4 text-center text-blue-400">
         <i className="fa fa-history"> Booking History </i>{" "}
       </h2>
+      <div className="border bg-blue-400 w-1/2 ">
+        <ul className=" p-3  flex flex-wrap justify-center items-center">
+          <li className="text-gray-300 mx-3">
+            <FontAwesomeIcon icon={faSquare}></FontAwesomeIcon>
+            Past bookings
+          </li>
+
+          <li className="text-green-200 mx-3">
+            <FontAwesomeIcon icon={faSquare}></FontAwesomeIcon>
+            Upcoming bookings
+          </li>
+        </ul>
+      </div>
       <div className="overflow-x-auto flex justify-center">
         <table className=" m-5 bg-white border border-gray-200">
           <thead>
@@ -43,8 +58,8 @@ function BookingHistory() {
                 key={index}
                 className={
                   new Date(booking.bookedDate) < currentDate
-                    ? "bg-gray-50"
-                    : "bg-green-50"
+                    ? "bg-gray-50 text-gray-600"
+                    : "bg-green-50 text-gray-800"
                 }
               >
                 <td className="py-2 px-4 border-b">{index + 1}</td>

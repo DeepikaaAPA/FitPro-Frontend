@@ -308,7 +308,7 @@ const TrainerAccount = () => {
         />
       </div>
 
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label className="block mb-1">Images</label>
         {formData.images?.map((image, index) =>
           image ? (
@@ -326,7 +326,7 @@ const TrainerAccount = () => {
             <input type="file"></input>
           )
         )}
-      </div>
+      </div> */}
 
       <div className="mb-4">
         <label className="block mb-1">Price</label>
