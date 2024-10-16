@@ -5,7 +5,7 @@ export default function AdminDashboard() {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="ml-64 p-4 w-full">
+      <div className="ml-20 md:ml-64 p-4 w-full">
         <Outlet></Outlet>
       </div>
     </div>

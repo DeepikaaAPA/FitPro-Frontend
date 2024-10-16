@@ -28,15 +28,15 @@ const TrainerAccount = () => {
   });
 
   const [initialData, setInitialData] = useState({});
-
+  const [profilePic, setProfilePic] = useState("");
   useEffect(() => {
     instance
       .get(`/trainer/get/${trainerId}`)
       .then((response) => {
-        const images = [...response.data.images];
-        images.fill("", response.data.length, 10);
-        setFormData({ ...formData, ...response.data, images });
+        setFormData({ ...formData, ...response.data });
+        setProfilePic(response.data.profilePic);
         setInitialData(response.data);
+        console.log(formData);
       })
       .catch((error) => {
         console.error("There was an error fetching the trainer data!", error);
@@ -112,50 +112,18 @@ const TrainerAccount = () => {
     data.append("file", formData.profilePic);
     data.append("upload_preset", "pcotrgbw");
 
-    console.log(data);
     try {
       const response = await axios.post(cloudinary_upload_url, data);
       console.log(response.data);
       const url = response.data.secure_url;
       await instance.post("/trainer/dp/updateDp", { url });
+      setProfilePic(url);
+      toast(" Profile Picture changed. ");
     } catch (error) {
       console.log(error);
     }
   };
   const handleSave = async () => {
-    await handleDpSave();
-    const imgData = new FormData();
-    // formData.images.forEach((image, index) => {
-    //   imgData.append(`images`, image);
-    // });
-    // try {
-    //   const res = await instance.post(`/trainer/images/${trainerId}`, imgData, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   });
-    // } catch (err) {
-    //   alert("error uploading images");
-    //   console.log(err);
-    // }
-    const videoData = new FormData();
-
-    videoData.append(`video`, formData.video);
-
-    try {
-      const res = await instance.post(
-        `/trainer/video/${trainerId}`,
-        videoData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-    } catch (err) {
-      toast("error uploading video");
-      console.log(err);
-    }
     //console.log(formData);
     instance
       .post(`/trainer/update/${trainerId}`, formData)
@@ -221,14 +189,27 @@ const TrainerAccount = () => {
       </div>
       <div className="mb-4">
         <label className="block mb-1">Profile Picture</label>
-        <input
-          type="file"
-          name="profilePic"
-          onChange={(e) => {
-            setFormData({ ...formData, profilePic: e.target.files[0] });
-          }}
-          className="text-sm w-full border p-2 rounded text-gray-500"
-        />
+        <div className="flex flex-wrap">
+          <img
+            src={profilePic}
+            className="w-20 h-20 rounded-full border border-blue-400 bg-blue-300 p-1"
+          ></img>
+          <input
+            type="file"
+            name="profilePic"
+            onChange={(e) => {
+              setFormData({ ...formData, profilePic: e.target.files[0] });
+            }}
+            className="text-sm w-1/2 border p-2 rounded text-gray-500"
+          />
+          <button
+            className="rounded bg-blue-400 text-white p-1"
+            onClick={handleDpSave}
+          >
+            {" "}
+            Upload{" "}
+          </button>
+        </div>
       </div>
       <div className="mb-4 ">
         <label className="block mb-1">Disciplines</label>
@@ -327,16 +308,12 @@ const TrainerAccount = () => {
         />
       </div>
 
-      {/* <div className="mb-4">
+      <div className="mb-4">
         <label className="block mb-1">Images</label>
         {formData.images?.map((image, index) =>
           image ? (
             <div key={index} className="mb-2">
-              <img
-                src={URL.createObjectURL(image)}
-                alt={`Upload ${index}`}
-                className="h-20 w-20"
-              />
+              <img src={image} alt={`Upload ${index}`} className="h-20 w-20" />
               <button
                 className="text-white rounded small  bg-red-500 p-1 "
                 onClick={() => removeImage(index)}
@@ -346,13 +323,10 @@ const TrainerAccount = () => {
               </button>
             </div>
           ) : (
-            ""
+            <input type="file"></input>
           )
         )}
-        {formData.images.length < 10 && (
-          <ImageUploader trainerId={trainerId}></ImageUploader>
-        )}
-      </div> */}
+      </div>
 
       <div className="mb-4">
         <label className="block mb-1">Price</label>
