@@ -47,7 +47,7 @@ function Upcoming() {
         <i className="fa fa-bell"> Upcoming Classes </i>{" "}
       </h2>
       <div className="overflow-x-auto flex justify-center">
-        <table className=" m-5 bg-white border border-gray-200 text-gray-500">
+        <table className=" m-5 bg-white border border-gray-200 text-gray-700">
           <thead>
             <tr className="bg-green-200 text-blue-400">
               <th className="py-2 px-4 border-b">No.</th>
@@ -61,10 +61,7 @@ function Upcoming() {
           </thead>
           <tbody>
             {bookings.map((booking, index) => (
-              <tr
-                key={index}
-                className={index % 2 === 0 ? "bg-gray-50" : "bg-green-50"}
-              >
+              <tr key={index} className={"bg-green-50"}>
                 <td className="py-2 px-4 border-b">{index + 1}</td>
                 <td className="py-2 px-4 border-b">
                   {booking.trainer.firstname + " " + booking.trainer.lastname}

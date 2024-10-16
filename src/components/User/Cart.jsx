@@ -7,7 +7,7 @@ import { toast ,ToastContainer} from "react-toastify";
 function Cart() {
   const cart = useSelector((state) => state.cart);
 
-  console.log(cart);
+
   const dispatch = useDispatch();
 
   const handleRemove = (index) => {

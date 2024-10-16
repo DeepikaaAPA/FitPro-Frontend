@@ -14,7 +14,7 @@ const ReviewCard = ({ trainer }) => {
           {trainer.disciplines.join(", ")}
         </p>
         <p className=" text-sm text-blue-400 text-base text-left py-2">
-          Avg.Rating: {trainer.avgRating}
+          Avg.Rating: {trainer.avgRating.toFixed(1)}{" "}
         </p>
         <p className="m-6 text-blue-500  bg-gray-50 text-center border text-base">
           <i className="fa fa-inr"></i> {trainer.price}

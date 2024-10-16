@@ -12,6 +12,7 @@ function Reviews() {
       try {
         const response = await instance.get("/trainer/getReviews");
         setData(response.data.reviews);
+      
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -36,10 +37,7 @@ function Reviews() {
           data.map((review, index) => (
             <div key={index} className=" border  md:m-3 ">
               <div className="p-2 pb-2 bg-yellow-100  text-sm flex flex-col ">
-                <ReviewCard
-                  key={review.user._id}
-                  user={review.user}
-                ></ReviewCard>
+                <ReviewCard key={index} user={review.user}></ReviewCard>
                 <span className=" text-blue-400 text-sm font-bold fa-solid fa-star">
                   {" "}
                   Rating - ({review.rating})

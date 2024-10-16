@@ -3,20 +3,20 @@ import React, { useEffect, useState } from "react";
 import instance from "../../services/instance";
 import { toast, ToastContainer } from "react-toastify";
 
-import { Rating } from "@material-tailwind/react";
-
 import ReviewCard from "./ReviewCard";
+import { useSelector } from "react-redux";
 
 function Review() {
   const [data, setData] = useState([]);
   const [initialData, setInitialData] = useState([]);
+  const { user } = useSelector((state) => state.user);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await instance.get("/user/getTrainersReviews");
         setData(response.data);
         setInitialData(response.data);
-       // console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -31,16 +31,16 @@ function Review() {
         i === index ? { ...item, review: e.target.value } : item
       )
     );
-   // console.log(data);
+    // console.log(data);
   };
 
   const handleSave = async (index) => {
     try {
-      const { trainerId, trainer, userId, user, review, rating } = data[index];
+      const { trainerId, trainer, review, rating } = data[index];
       await instance.post("/user/postReview", {
         trainerId,
         trainer,
-        userId,
+        userId: user.userId,
         user,
         review,
         rating,
@@ -60,7 +60,7 @@ function Review() {
         i === index ? { ...item, rating: e.target.value } : item
       )
     );
-   // console.log(data);
+    // console.log(data);
   };
   const whitestar = "☆";
   const blackstar = "★";

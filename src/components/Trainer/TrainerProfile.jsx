@@ -27,6 +27,7 @@ export default function TrainerProfile() {
     awards: [],
     qualifications: [],
   });
+  
   useEffect(() => {
     instance
       .get(`/trainer/get/${trainerId}`)
@@ -197,6 +198,9 @@ export default function TrainerProfile() {
                     <i className="fas fa-language mr-2 text-md "></i>{" "}
                     {data.languages}
                   </div>
+                </div>
+                <div>
+
                 </div>
               </div>
             </div>

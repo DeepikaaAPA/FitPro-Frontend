@@ -30,12 +30,12 @@ function BookingHistory() {
         <ul className=" p-3  flex flex-wrap justify-center items-center">
           <li className="text-gray-300 mx-3">
             <FontAwesomeIcon icon={faSquare}></FontAwesomeIcon>
-            Past bookings
+            Past classes
           </li>
 
           <li className="text-green-200 mx-3">
             <FontAwesomeIcon icon={faSquare}></FontAwesomeIcon>
-            Upcoming bookings
+            Upcoming classes
           </li>
         </ul>
       </div>
