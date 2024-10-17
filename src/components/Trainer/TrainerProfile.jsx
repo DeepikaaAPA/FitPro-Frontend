@@ -27,7 +27,7 @@ export default function TrainerProfile() {
     awards: [],
     qualifications: [],
   });
-  
+  const [reviews, setReviews] = useState([]);
   useEffect(() => {
     instance
       .get(`/trainer/get/${trainerId}`)
@@ -36,6 +36,15 @@ export default function TrainerProfile() {
       })
       .catch((error) => {
         console.error("There was an error fetching the trainer data!", error);
+      });
+    instance
+      .get(`/trainer/getReveiwsByTrainerId/${trainerId}`)
+      .then((response) => setReviews([...response.data.reviews]))
+      .catch((error) => {
+        console.error(
+          "There was an error fetching the trainer reviews!",
+          error
+        );
       });
   }, [trainerId]);
   const whitestar = "☆";
@@ -159,17 +168,17 @@ export default function TrainerProfile() {
                       <div className="uppercase text-blue-400">
                         Qualifications:
                       </div>
-                      {data.qualifications.map((q) => (
-                        <>
+                      {data.qualifications.map((q, index) => (
+                        <div key={"q" + index}>
                           <i className="fas fa-certificate mr-2 text-lg text-gray-500"></i>{" "}
                           {q} <br></br>
-                        </>
+                        </div>
                       ))}
                     </div>
                     <div className=" w-1/2 mb-2 text-gray-700 mt-10 text-left border p-2">
                       <div className="uppercase text-blue-400">Awards:</div>
                       {data.awards.map((award, index) => (
-                        <div key={index}>
+                        <div key={"a "+index}>
                           <i className="fas fa-trophy mr-2 text-lg text-gray-500"></i>{" "}
                           {award} <br></br>
                         </div>
@@ -199,8 +208,13 @@ export default function TrainerProfile() {
                     {data.languages}
                   </div>
                 </div>
-                <div>
-
+                <div className="bg-blue-50 flex flex-wrap">
+                  {reviews.map((review) => {
+                    <ReviewConcise
+                      key={review._id}
+                      review={review}
+                    ></ReviewConcise>;
+                  })}
                 </div>
               </div>
             </div>
@@ -208,5 +222,42 @@ export default function TrainerProfile() {
         </section>
       </main>
     </>
+  );
+}
+
+function ReviewConcise({ review }) {
+  const whitestar = "☆";
+  const blackstar = "★";
+  const stars = [1, 2, 3, 4, 5];
+  return (
+    <div className="m-2 bg-yellow-100 flex flex-col shadow">
+      <p className="text-blue-400 capitalize border-b ">
+        {review.user.firstname + " " + review.user.lastname}
+      </p>
+      <p>
+        {review.rating}
+        <div className="p-2">
+          <p
+            className={
+              " text-center text-2xl " +
+              (review.rating > 3
+                ? " text-green-500 "
+                : review.rating < 3
+                ? " text-red-300 "
+                : " text-yellow-500")
+            }
+          >
+            {stars.map((number) =>
+              number <= review.rating ? (
+                <i key={number}>{blackstar}</i>
+              ) : (
+                <i key={number}>{whitestar}</i>
+              )
+            )}
+          </p>
+        </div>
+      </p>
+      <p className="text-gray-500">{review.review}</p>
+    </div>
   );
 }
