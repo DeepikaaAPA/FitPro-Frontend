@@ -23,7 +23,7 @@ export default function Register() {
       toast(response.data.message);
       setFirstname("");
       setLastname("");
-      setEmail("");
+      setEmail("");                                                       
       setPassword("");
     } catch (error) {
       console.log(error?.response?.data?.message);
